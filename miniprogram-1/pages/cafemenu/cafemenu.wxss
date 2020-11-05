@@ -1,0 +1,118 @@
+/**cafemenu.wxss**/
+.cafemenu-top-container {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  background-color: #FFFFFF;
+}
+.backbtn-bar {
+  height: 48px;
+}
+.cafeName-text {
+  position: absolute;
+  color : text-black1;
+  font-size: 18px;
+  font-weight : 500;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cafeLocation-text {
+  position: absolute;
+  color : text-black3;
+  font-size: 12px;
+  font-weight: normal;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 33px;
+}
+
+/* .cafe-like-btn {
+  display: flex;
+  width: 27px;
+  height: 27px;
+  align-content: right;
+  background-image: url("./image/ic-like-active.png");
+} */
+
+.cafemenu-middle-line{
+  height: 3px;
+  background-color: #eeeeee;
+}
+
+/** cafe menu list **/
+.menu-item {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.menu-name {
+  margin-top: 14px;
+  margin-left: 24px;
+  font-size: 18px;
+}
+
+.menu-price {
+  margin-top: 4px;
+  margin-left: 24px;
+  font-size: 12px;
+}
+
+.menu-image{
+  background-color: #e49b14;
+  border-radius: 70%;
+  width: 52px;
+  height: 52px;
+  align-content: right;
+  margin-right: 16px;
+  margin-top: 9px;
+}
+
+.border{
+  height: 1px;
+  background-color: #dddddd;
+}
+
+
+/** text size **/
+.text-size10{
+  font-size: 10px;
+}
+.text-size11{
+  font-size: 11px;
+}
+.text-size12{
+  font-size: 12px;
+}
+.text-size14{
+  font-size: 14px;
+}
+.text-size16{
+  font-size: 16px;
+}
+.text-size18{
+  font-size: 18px;
+}
+
+/** text color **/
+
+.text-black1{
+  color: #333333;
+}
+.text-black2{
+  color: #444444;
+}
+.text-black3{
+  color: #666666;
+}
+
+.text-center{
+  text-align: center;
+}

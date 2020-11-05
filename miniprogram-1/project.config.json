@@ -38,7 +38,6 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.0.4",
-  "appid": "wx532dceee23910424",
   "projectname": "UOrders",
   "debugOptions": {
     "hidedInDevtools": []
@@ -62,6 +61,13 @@
         {
           "name": "pages/main/main",
           "pathName": "pages/main/main",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
           "scene": null
         }
       ]

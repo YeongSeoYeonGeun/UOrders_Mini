@@ -40,7 +40,42 @@ Page({
         name: '카페라떼',
         price: '1500원',
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },  
+      },
+      {
+        index: 4,
+        name: '아메리카노',
+        price: '1000원',
+        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+      },
+      {
+        index: 5,
+        name: '카페라떼',
+        price: '1500원',
+        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+      }, {
+        index: 4,
+        name: '아메리카노',
+        price: '1000원',
+        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+      },
+      {
+        index: 5,
+        name: '카페라떼',
+        price: '1500원',
+        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+      },
+      {
+        index: 4,
+        name: '아메리카노',
+        price: '1000원',
+        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+      },
+      {
+        index: 5,
+        name: '카페라떼',
+        price: '1500원',
+        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+      }
     ]
   },
   onLoad: function () {

@@ -70,7 +70,7 @@
 				{
 					"id": 0,
 					"name": "SeonyoungMode",
-					"pathName": "pages/cafemenu/cafemenu",
+					"pathName": "pages/orderComplete/orderComplete",
 					"query": "",
 					"scene": null
 				}

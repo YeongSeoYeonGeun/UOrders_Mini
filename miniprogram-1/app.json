@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/main/main",
     "pages/cafemenu/cafemenu",
-    "pages/cart/cart"
+    "pages/cart/cart",
+    "pages/orderComplete/orderComplete"
   ],
   "window": {
     "backgroundTextStyle": "light",

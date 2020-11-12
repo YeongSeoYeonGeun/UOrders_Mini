@@ -47,12 +47,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -67,8 +61,13 @@
         {
           "id": 0,
           "name": "SeonyoungMode",
-          "pathName": "pages/cafemenu/cafemenu",
+          "pathName": "pages/cart/cart",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/main/main",
+          "pathName": "pages/main/main",
           "scene": null
         }
       ]

@@ -1,8 +1,12 @@
 /**cafemenu.wxss**/
-.cafemenu-top-container {
+cafemenu-total-block {
   display: flex;
   flex-direction: column;
+}
+.cafemenu-top-container {
   height: 150px;
+  display: flex;
+  flex-direction: column;
   background-color: #FFFFFF;
 }
 .backbtn-bar {
@@ -11,7 +15,7 @@
 .cafeName-text {
   position: absolute;
   color : text-black1;
-  font-size: 18px;
+  font-size: 24px;
   font-weight : 500;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -27,20 +31,24 @@
   margin-top: 33px;
 }
 
-/* .cafe-like-btn {
-  display: flex;
+.cafe-like-btn {
+  background-color: rebeccapurple;
   width: 27px;
   height: 27px;
-  align-content: right;
-  background-image: url("./image/ic-like-active.png");
-} */
+  margin-top: 68px;
+  margin-left: 330px;
+}
 
 .cafemenu-middle-line{
+  margin-top: 10px;
   height: 3px;
   background-color: #eeeeee;
 }
 
 /** cafe menu list **/
+.menu-list-scrollview{
+  height: calc(100vh - 153px);
+}
 .menu-item {
   height: 70px;
   display: flex;
@@ -74,12 +82,18 @@
   margin-right: 16px;
   margin-top: 9px;
 }
+.cart-btn {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  left: 80%;
+  top: 88%;
+}
 
 .border{
   height: 1px;
   background-color: #dddddd;
 }
-
 
 /** text size **/
 .text-size10{

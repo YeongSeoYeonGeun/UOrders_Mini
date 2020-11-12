@@ -1,0 +1,41 @@
+<!--cafemenu.wxml-->
+<view class='cafemenu-total-container'>
+  <view class="cafemenu-top-container">
+    <view class="backbtn-bar"></view>
+    <view class="name-and-location">
+        <view class="cafeName-text"> {{cafeName}} </view>
+        <view class="cafeLocation-text"> {{cafeLocation}} </view>
+    </view>
+    <view class='cafe-like-btn'></view>
+  <view class="cafemenu-middle-line"> </view>
+</view>
+
+ <!-- 메뉴 리스트 scroll-view -->
+<block>
+<image class='cart-btn' src='../../image/ic-cart.png' style='z-index : 2;'></image>
+<view style='z-index :1;'>
+  <scroll-view wx:if="{{menuList.length}}" scroll-y="{{modalName==null}}" 
+  class="menu-list-scrollview page {{modalName!=null?'show':''}}" >
+    <view class="menu-list">
+      <view wx:for="{{menuList}}" wx:key="index" bindtap="bindDetail" data-item="{{item}}">
+        <view class="menu-item">
+          <!--메뉴 이름과 가격-->
+          <view class="menu-content">
+            <view class='menu-name'> {{item.name}} </view>
+            <view class="menu-price"> {{item.price}} </view>
+          </view>
+          <!--메뉴 사진-->
+          <view class="menu-image" style="background-image:url('item.image');">
+            <text wx:if="{{!item.image}}" class="cuIcon-picfill lg text-gray"></text>
+          </view>
+        </view>
+        <view class="border"></view>
+      </view>
+    </view>
+  </scroll-view>
+  <view wx:else>
+    <text class="text-center text-black1">등록된 메뉴가 없습니다.</text>
+  </view>
+  </view>
+</block>
+</view>

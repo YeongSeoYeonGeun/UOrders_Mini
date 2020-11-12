@@ -1,66 +1,31 @@
-// pages/cart/cart.js
+const app = getApp()
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    cafeName: '남산학사 cafe',
+    cartList: [
+      {
+        index: 0,
+        name: '아메리카노',
+        temperature : 'ICED',
+        size : 'Regular',
+        taketype : 'HERE',
+        count: '1',
+        price: '1,000원'
+      },
+      {
+        index: 1,
+        name: '카페라떼',
+        temperature: 'ICED',
+        size: 'Regular',
+        taketype: 'HERE',
+        count: '1',
+        price: '2,500원'
+      }
+    ]
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+  onLoad: function () {
+    console.log('cafemenu load')
+    // 통신 필요 (사용자 이름)
   }
 })

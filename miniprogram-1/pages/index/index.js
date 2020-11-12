@@ -95,9 +95,9 @@ Page({
     // 통신 필요 (사용자 이름)
   },
   bindCafeTap: function() {
-    // wx.navigateTo({
-    //   url: '../logs/logs'
-    // })
+    wx.navigateTo({
+      url: '../cafemenu/cafemenu'
+    })
     console.log("hiroo")
   },
   getNear : function() {

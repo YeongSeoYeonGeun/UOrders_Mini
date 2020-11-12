@@ -11,7 +11,7 @@ Page({
         size : 'Regular',
         taketype : 'HERE',
         count: '1',
-        price: '1,000원'
+        price: '1,000'
       },
       {
         index: 1,
@@ -20,9 +20,10 @@ Page({
         size: 'Regular',
         taketype: 'HERE',
         count: '1',
-        price: '2,500원'
+        price: '2,500'
       }
-    ]
+    ],
+    totalprice : '4,000'
   },
   onLoad: function () {
     console.log('cafemenu load')

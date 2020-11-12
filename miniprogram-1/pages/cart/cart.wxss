@@ -6,10 +6,14 @@
 }
 
 .back-btn-box {
-  background-color: greenyellow;
   height: 48px;
   width: 48px;
   align-content: left;
+}
+
+.back-btn{
+  height: 48px;
+  width: 48px;
 }
 
 .cart-text{
@@ -24,8 +28,8 @@
   background-color: #dddddd;
 }
 
-.cart-container{
-  height: calc(100vh - 48px);
+.cart-list-container{
+  height: auto;
 }
 
 .cafe-name-box{
@@ -48,44 +52,85 @@
 }
 
 .cart-item-box{
-  background-color: red;
   height: 101px;
 }
 
-.item-name-info-area{
-  background-color: orange;
-  height: 63px;
-  overflow: auto;
+.name-cancel-area{
+  padding-top: 10px;
 }
 
-.item-count-price-area{
-  background-color: purple;
-  height: 48px;
-}
-
-.item-name-text{
+.name-text{
   font-size: 20px;
   color: #333333;
   font-weight: normal;
   margin-left: 20px;
-  margin-top: 16px;
 }
 
-.item-info-text{
+.cancel-btn{
+  width: 24px;
+  height: 24px;
+  float: right;
+  margin-right: 13px;
+}
+
+info-area{
+  height: 19px;
+}
+
+.info-text{
   font-size: 14px;
   font-weight: normal;
   color: #888888;
   margin-left: 20px; 
 }
 
-.item-cancle-btn{
-  width: 24px;
-  height: 24px;
-  background-color: red;
-  align-content: right;
+.count-price-area{
+  height: 38px;
+}
+
+.count-price-text{
+  font-size: 16px;
+  font-weight: normal;
+  color: #444444;
+  float: right;
+  margin-right: 20px;
 }
 
 .item-border{
   height: 1px;
   background-color: #dddddd;
+}
+
+.delete-all-area{
+  height: 44px;
+}
+
+.delete-all-text{
+  font-size: 14px;
+  font-weight: normal;
+  color: #888888;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.order-button-area {
+
+  width: 369px;
+  height: 52px;
+  background-color: #0b463c;
+  border-radius: 4px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 90%;
+}
+
+.price-order-text{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
 }

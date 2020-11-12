@@ -1,3 +1,7 @@
+.temp-white{
+  background-color: white;
+  height: 100vh;
+}
 
 .title-bar{
   height: 48px;
@@ -84,7 +88,7 @@ footer{
   bottom:0px; 
   height:42px;
   width:100%; 
-  color: white; 
+  background-color: white; 
   }
 
 .go-home-text{

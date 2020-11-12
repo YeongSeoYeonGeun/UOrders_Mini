@@ -87,6 +87,16 @@ Page({
     customCalloutMarkerIds: [],
     num: 1
   },
+  onLaunch: function () {
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let custom = wx.getMenuButtonBoundingClientRect();
+        this.globalData.Custom = custom;
+        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+      }
+    })
+  },
   onLoad: function () {
     console.log('main load')
     this.setData({
@@ -95,9 +105,9 @@ Page({
     // 통신 필요 (사용자 이름)
   },
   bindCafeTap: function() {
-    // wx.navigateTo({
-    //   url: '../logs/logs'
-    // })
+    wx.navigateTo({
+      url: '../cafemenu/cafemenu'
+    })
     console.log("hiroo")
   },
   getNear : function() {

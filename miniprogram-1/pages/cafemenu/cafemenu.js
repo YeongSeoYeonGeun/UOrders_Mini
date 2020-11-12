@@ -81,5 +81,11 @@ Page({
   onLoad: function () {
     console.log('cafemenu load')
     // 통신 필요 (사용자 이름)
+  },
+  bindCart :function() {
+    console.log('cafeMenu-bindCart function');
+    wx.navigateTo({
+      url: '../cart/cart'
+    })
   }
 })

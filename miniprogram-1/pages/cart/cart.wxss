@@ -82,7 +82,6 @@
   width: 24px;
   height: 24px;
   background-color: red;
-  align-content: right;
 }
 
 .item-border{

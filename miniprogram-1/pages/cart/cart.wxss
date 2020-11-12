@@ -1,4 +1,9 @@
 /* cart.wxss */
+
+.temp-white{
+  background-color: white;
+}
+
 .backbtn-bar{
   height: 48px;
   display: flex;
@@ -17,10 +22,10 @@
 }
 
 .cart-text{
-  font-size: '16px';
+  font-size: 16px;
   color: #333333;
-  margin-left: 106px;
-  margin-top: 13px;
+  margin-left: 126px;
+  line-height: 48px;
 }
 
 .border{
@@ -30,6 +35,7 @@
 
 .cart-list-container{
   height: auto;
+  background-color: white;
 }
 
 .cafe-name-box{
@@ -103,19 +109,17 @@ info-area{
 
 .delete-all-area{
   height: 44px;
+  text-align: center;
 }
 
 .delete-all-text{
   font-size: 14px;
   font-weight: normal;
   color: #888888;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 50%);
+  line-height: 44px;
 }
 
 .order-button-area {
-
   width: 369px;
   height: 52px;
   background-color: #0b463c;
@@ -123,14 +127,14 @@ info-area{
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  margin-top: 90%;
+  margin-top: 67%;
 }
 
 .price-order-text{
   position: absolute;
   left: 50%;
   transform: translate(-50%, 40%);
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   color: #ffffff;
 }

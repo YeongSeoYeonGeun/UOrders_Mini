@@ -12,13 +12,13 @@
 
  <!-- 메뉴 리스트 scroll-view -->
 <block>
-<image class='cart-btn' src='../../image/ic-cart.png' style='z-index : 2;'></image>
+<image class='cart-btn' src='../../image/ic-cart.png' style='z-index : 2;' bindtap="bindCart"></image>
 <view style='z-index :1;'>
   <scroll-view wx:if="{{menuList.length}}" scroll-y="{{modalName==null}}" 
   class="menu-list-scrollview page {{modalName!=null?'show':''}}" >
     <view class="menu-list">
-      <view wx:for="{{menuList}}" wx:key="index" bindtap="bindDetail" data-item="{{item}}">
-        <view class="menu-item">
+      <view wx:for="{{menuList}}" wx:key="index" data-item="{{item}}">
+        <view class="menu-item" bindtap="clickMenu">
           <!--메뉴 이름과 가격-->
           <view class="menu-content">
             <view class='menu-name'> {{item.name}} </view>

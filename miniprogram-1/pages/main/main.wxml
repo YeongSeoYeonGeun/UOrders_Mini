@@ -1,9 +1,8 @@
 <!--main.wxml-->
-
 <view class="toolbar main-top">
   <view class="main-toolbar"> 
-    <image class="main-logo" src="../../image/ic-logo@3x.png"></image>
-    <image class="my-page" src="../../image/ic-mypage.png"></image>
+    <image class="main-logo toolbar-btn" src="../../image/ic-logo@3x.png"></image>
+    <image class="my-page toolbar-btn" src="../../image/ic-mypage.png"></image>
   </view>
 </view>
 <view class="main-container">

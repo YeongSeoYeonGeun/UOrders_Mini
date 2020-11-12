@@ -1,13 +1,13 @@
 <!--cart.wxml-->
 <view class='backbtn-bar'>
   <view class='back-btn-box'>
-    <image class='back-btn' ></image>
+    <image class='back-btn' src='../../image/ic-back.png' ></image>
   </view>
   <view class='cart-text'>장바구니</view>
 </view>
 <view class="border"></view>
   
-<view class='cart-container'>
+<view class='cart-list-container'>
 <scroll-view wx:if="{{cartList.length}}" scroll-y="{{modalName==null}}" 
   class="menu-list-scrollview page {{modalName!=null?'show':''}}" >
   <view class='cafe-name-box'>
@@ -15,25 +15,37 @@
   </view>
   <view class="bold-border"></view>
 
-
   <view class="cart-list">
       <view wx:for="{{cartList}}" wx:key="index" bindtap="bindDetail" data-item="{{item}}">
       <view class='cart-item-box'>
-        <view class='item-name-info-area'>
-          <image class='item-cancle-btn' ></image>
-          <view class='item-name-text'>{{item.name}}</view>
-          <view class='item-info-text'>{{item.temperature}}/{{item.size}}/{{item.taketype}}</view>
-        </view>
-        <view class='item-count-price-area'>
-        </view>
+          <view class='name-cancel-area'>
+            <text class='name-text'>{{item.name}}</text>
+            <image class='cancel-btn' src='../../image/ic-cancel.png' ></image>
+          </view>
+
+          <view class='info-area'>
+            <text class='info-text'>{{item.temperature}}/{{item.size}}/{{item.taketype}}</text>
+          </view>
+
+          <view class='count-price-area'>
+          <text class='count-price-text'>{{item.count}}개 {{item.price}}원</text>
+          </view>
+
       </view>
       <view class="item-border"></view>
-
-        
       </view>
     </view>
 
+<view class='delete-all-area'>
+  <text class='delete-all-text'>모두 삭제</text>
+</view>
 
-  </scroll-view>
+<view class="item-border"></view>
+</scroll-view>
+
+<view class='order-button-area'>
+  <text class='price-order-text'>{{totalprice}}원 주문하기</text>
+</view>
+
 </view>
 

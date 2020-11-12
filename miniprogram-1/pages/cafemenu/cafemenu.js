@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     cafeName: '남산학사 cafe',
-    cafeLocation : '신공학관 1층',
+    cafeLocation : '신공학관 1층', 
     menuList: [
       {
         index: 0,

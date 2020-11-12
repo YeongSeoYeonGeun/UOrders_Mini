@@ -66,8 +66,15 @@
           "scene": null
         },
         {
-          "name": "pages/main/main",
+          "name": "pages/menuDetail",
+          "pathName": "pages/menuDetail/menuDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/main",
           "pathName": "pages/main/main",
+          "query": "",
           "scene": null
         }
       ]

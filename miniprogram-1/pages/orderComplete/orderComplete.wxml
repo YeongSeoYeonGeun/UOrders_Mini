@@ -1,3 +1,4 @@
+<view class="temp-white">
 <view class='title-bar'>
   <view class='cancle-button-box'>
     <image class='cancle-button' src='../../image/ic-toolbar-cancel.png' ></image>
@@ -24,5 +25,5 @@
 <footer class='go-home-box'>
 <view class='go-home-text'>홈으로 돌아가기</view>
 </footer>
-
+</view>
 </view>

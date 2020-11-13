@@ -1,0 +1,63 @@
+<!--menuDetail.wxml-->
+<view class="height-container">
+<view class="toolbar menuDetail-top">
+  <view class="menuDetail-toolbar"> 
+    <image bindtap="clickBack" class="toolbar-btn" src="../../image/ic-back.png"></image>
+    <view class="toolbar-title-container">
+      <text class="toolbar-title-text">메뉴 상세</text>
+    </view>
+  </view>
+</view>
+<view class="menuDetail-container">
+  <view class="menu-info-container">
+    <view class="menu-info-text-container">
+      <view class="menu-name-text text-black1 text-size18">{{menuName}}</view>
+      <view class="menu-price-text text-black1 text-size14">{{menuPrice}}</view>
+    </view>
+    <image class = "menu-info-img" src="../../image/img-default.png"></image>
+  </view>
+  <view class="menu-count">
+    <image class="menu-count-down" src="../../image/ic-count-down@3x.png"></image>
+    <text class="menu-count-text">{{count}}</text>
+    <image class="menu-count-up" src="../../image/ic-count-up@3x.png"></image>
+  </view>
+  <!-- Hot or Iced -->
+  <view class="menu-temperature-container">
+    <view wx:if="{{temperature == 'HOT'}}" class="menu-temparature-hot-selected">
+      <text class="menu-temparature-text text-white text-size16">HOT</text>
+    </view>
+    <view wx:if="{{temperature != 'HOT'}}" bindtap="clickHot"  class="menu-temparature-hot-unselected">
+      <text class="menu-temparature-text color-hot text-size16">HOT</text>
+    </view>
+    <view wx:if="{{temperature == 'ICED'}}" class="menu-temparature-iced-selected">
+      <text class="menu-temparature-text text-white text-size16">ICED</text>
+    </view>
+    <view wx:if="{{temperature != 'ICED'}}" bindtap="clickIced" class="menu-temparature-iced-unselected">
+      <text class="menu-temparature-text color-iced text-size16">ICED</text>
+    </view>
+  </view>
+
+  <!-- <view class="menu-size-container">
+    <text class="text-size11">사이즈 선택</text>
+  </view> -->
+  <view class="menu-takeType-container">
+    <view wx:if="{{takeType == 'HERE'}}"  class="menu-takeType-here-selected">
+      <text class="menu-takeType-text text-white text-size16">HERE</text>
+    </view>
+    <view wx:if="{{takeType != 'HERE'}}" bindtap="clickHere"  class="menu-takeType-here-unselected">
+      <text class="menu-takeType-text text-black1 text-size16">HERE</text>
+    </view>
+    <view wx:if="{{takeType == 'TOGO'}}" class="menu-takeType-togo-selected">
+      <text class="menu-takeType-text text-white text-size16">TO GO</text>
+    </view>
+    <view wx:if="{{takeType != 'TOGO'}}" bindtap="clickTogo"  class="menu-takeType-togo-unselected">
+      <text class="menu-takeType-text text-black1 text-size16">TO GO</text>
+    </view>
+  </view>
+
+  <view class="menu-add-container" bindtap="clickBack">
+    <text class="menu-add-text text-size20">1개 담기</text>
+    <text class="menu-add-price-text text-size14">1,500원</text>
+  </view>
+</view>
+</view>

@@ -5,14 +5,19 @@
     "pages/main/main",
     "pages/cafemenu/cafemenu",
     "pages/cart/cart",
+    "pages/menuDetail/menuDetail",
     "pages/orderComplete/orderComplete"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0B463C",
     "navigationBarTitleText": "UOrders",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "cu-custom":"/colorui/components/cu-custom"
+  }
 }

@@ -1,4 +1,5 @@
 <!--cart.wxml-->
+<view class="temp-white">
 <view class='backbtn-bar'>
   <view class='back-btn-box'>
     <image class='back-btn' src='../../image/ic-back.png' ></image>
@@ -43,9 +44,9 @@
 <view class="item-border"></view>
 </scroll-view>
 
-<view class='order-button-area'>
+<view class='order-button-area' bindtap="clickOrder">
   <text class='price-order-text'>{{totalprice}}원 주문하기</text>
 </view>
 
 </view>
-
+</view>

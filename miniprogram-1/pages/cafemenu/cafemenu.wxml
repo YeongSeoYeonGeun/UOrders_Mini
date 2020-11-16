@@ -5,8 +5,8 @@
     <view class="name-and-location">
         <view class="cafeName-text"> {{cafeName}} </view>
         <view class="cafeLocation-text"> {{cafeLocation}} </view>
+      <image class='cafe-like-btn' src="../../image/ic-like.png"></image>
     </view>
-    <view class='cafe-like-btn'></view>
   <view class="cafemenu-middle-line"> </view>
 </view>
 

@@ -32,7 +32,6 @@ cafemenu-total-block {
 }
 
 .cafe-like-btn {
-  background-color: rebeccapurple;
   width: 27px;
   height: 27px;
   margin-top: 68px;

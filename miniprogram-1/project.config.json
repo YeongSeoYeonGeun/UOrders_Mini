@@ -68,6 +68,13 @@
         {
           "name": "pages/cafemenu/cafemenu",
           "pathName": "pages/cafemenu/cafemenu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/main",
+          "pathName": "pages/main/main",
+          "query": "",
           "scene": null
         }
       ]

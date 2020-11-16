@@ -28,5 +28,10 @@ Page({
   onLoad: function () {
     console.log('cafemenu load')
     // 통신 필요 (사용자 이름)
+  },
+  clickOrder: function(){
+    wx.navigateTo({
+      url: '../orderComplete/orderComplete',
+    })
   }
 })

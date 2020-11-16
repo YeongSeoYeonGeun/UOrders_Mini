@@ -87,5 +87,10 @@ Page({
     wx.navigateTo({
       url: '../cart/cart'
     })
+  },
+  clickMenu : function(){
+    wx.navigateTo({
+      url: '../menuDetail/menuDetail',
+    })
   }
 })

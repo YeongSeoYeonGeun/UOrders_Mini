@@ -4,6 +4,7 @@ Page({
   data: {
     cafeName: '남산학사 cafe',
     cafeLocation : '신공학관 1층', 
+    favorite : 0,
     menuList: [
       {
         index: 0,
@@ -42,36 +43,36 @@ Page({
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
       },
       {
-        index: 4,
+        index: 6,
         name: '아메리카노',
         price: '1000원',
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
       },
       {
-        index: 5,
+        index: 7,
         name: '카페라떼',
         price: '1500원',
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
       }, {
-        index: 4,
+        index: 8,
         name: '아메리카노',
         price: '1000원',
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
       },
       {
-        index: 5,
+        index: 9,
         name: '카페라떼',
         price: '1500원',
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
       },
       {
-        index: 4,
+        index: 10,
         name: '아메리카노',
         price: '1000원',
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
       },
       {
-        index: 5,
+        index: 11,
         name: '카페라떼',
         price: '1500원',
         image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
@@ -91,6 +92,23 @@ Page({
   clickMenu : function(){
     wx.navigateTo({
       url: '../menuDetail/menuDetail',
+    })
+  },
+  back : function(){
+    wx.navigateBack({
+      delta: 0,
+    })
+  },
+  like : function(){
+    console.log('hiroo')
+    this.setData({
+      favorite: 1
+    })
+  },
+  unlike : function(){
+    console.log('unlike')
+    this.setData({
+      favorite: 0
     })
   }
 })

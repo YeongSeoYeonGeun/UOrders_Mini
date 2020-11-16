@@ -1,11 +1,16 @@
 <!--cafemenu.wxml-->
+<view class="toolbar cafemenu-top">
+  <view class="main-toolbar"> 
+    <image bindtap="back" class="toolbar-btn toolbar-back" src="../../image/ic-back.png"></image>
+  </view>
+</view>
 <view class='cafemenu-total-container'>
   <view class="cafemenu-top-container">
-    <view class="backbtn-bar"></view>
     <view class="name-and-location">
-        <view class="cafeName-text"> {{cafeName}} </view>
-        <view class="cafeLocation-text"> {{cafeLocation}} </view>
-      <image class='cafe-like-btn' src="../../image/ic-like.png"></image>
+      <view class="cafeName-text text-black1"> {{cafeName}} </view>
+      <view class="cafeLocation-text text-black3"> {{cafeLocation}} </view>
+      <image wx:if="{{favorite==0}}" class='cafe-like-btn' bindtap="like" src="../../image/ic-like.png"></image>
+      <image wx:if="{{favorite==1}}" class='cafe-unlike-btn' bindtap="unlike" src="../../image/ic-like-active.png"></image>
     </view>
   <view class="cafemenu-middle-line"> </view>
 </view>

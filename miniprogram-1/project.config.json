@@ -66,8 +66,8 @@
           "scene": null
         },
         {
-          "name": "pages/cafemenu/cafemenu",
-          "pathName": "pages/cafemenu/cafemenu",
+          "name": "pages/cart/cart",
+          "pathName": "pages/cart/cart",
           "query": "",
           "scene": null
         },

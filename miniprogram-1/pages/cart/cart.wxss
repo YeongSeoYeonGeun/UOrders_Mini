@@ -2,6 +2,10 @@
 
 .temp-white{
   background-color: white;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .backbtn-bar{
@@ -54,11 +58,11 @@
 
 .bold-border{
   height: 2px;
-  background-color: #dddddd;
+  background-color: #eeeeee;
 }
 
 .cart-item-box{
-  height: 101px;
+  /* height: 101px; */
 }
 
 .name-cancel-area{
@@ -85,7 +89,7 @@ info-area{
 
 .info-text{
   font-size: 14px;
-  font-weight: normal;
+  font-weight: 350;
   color: #888888;
   margin-left: 20px; 
 }
@@ -104,7 +108,7 @@ info-area{
 
 .item-border{
   height: 1px;
-  background-color: #dddddd;
+  background-color: #eeeeee;
 }
 
 .delete-all-area{
@@ -120,14 +124,11 @@ info-area{
 }
 
 .order-button-area {
-  width: 369px;
   height: 52px;
   background-color: #0b463c;
   border-radius: 4px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  margin-top: 67%;
+  margin: auto 8px 8px 8px;
+  position: relative;
 }
 
 .price-order-text{
@@ -137,4 +138,9 @@ info-area{
   font-size: 20px;
   font-weight: 500;
   color: #ffffff;
+}
+
+.cart-empty{
+  text-align: center;
+  margin-top: 100px;
 }

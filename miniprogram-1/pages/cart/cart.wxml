@@ -2,13 +2,16 @@
 <view class="temp-white">
 <view class='backbtn-bar'>
   <view class='back-btn-box'>
-    <image class='back-btn' src='../../image/ic-back.png' ></image>
+    <image bindtap= "back" class='back-btn' src='../../image/ic-back.png' ></image>
   </view>
   <view class='cart-text'>장바구니</view>
 </view>
 <view class="border"></view>
   
 <view class='cart-list-container'>
+  <view class="cart-empty" wx:if="{{cartList.length == 0}}">
+    장바구니가 비었습니다.
+  </view>
 <scroll-view wx:if="{{cartList.length}}" scroll-y="{{modalName==null}}" 
   class="menu-list-scrollview page {{modalName!=null?'show':''}}" >
   <view class='cafe-name-box'>
@@ -17,11 +20,11 @@
   <view class="bold-border"></view>
 
   <view class="cart-list">
-      <view wx:for="{{cartList}}" wx:key="index" bindtap="bindDetail" data-item="{{item}}">
+      <view wx:for="{{cartList}}" wx:key="index" data-item="{{item}}">
       <view class='cart-item-box'>
           <view class='name-cancel-area'>
             <text class='name-text'>{{item.name}}</text>
-            <image class='cancel-btn' src='../../image/ic-cancel.png' ></image>
+            <image data-item="{{item}}" bindtap="deleteMenu" class='cancel-btn' src='../../image/ic-cancel.png' ></image>
           </view>
 
           <view class='info-area'>
@@ -29,24 +32,22 @@
           </view>
 
           <view class='count-price-area'>
-          <text class='count-price-text'>{{item.count}}개 {{item.price}}원</text>
+            <text class='count-price-text'>{{item.count}}개 {{item.price}}원</text>
           </view>
-
       </view>
       <view class="item-border"></view>
       </view>
     </view>
 
-<view class='delete-all-area'>
+<view class='delete-all-area' bindtap="deleteAll">
   <text class='delete-all-text'>모두 삭제</text>
 </view>
 
 <view class="item-border"></view>
 </scroll-view>
 
-<view class='order-button-area' bindtap="clickOrder">
-  <text class='price-order-text'>{{totalprice}}원 주문하기</text>
 </view>
-
-</view>
+  <view wx:if="{{cartList.length}}" class='order-button-area' bindtap="clickOrder">
+    <text class='price-order-text'>{{totalprice}}원 주문하기</text>
+  </view>
 </view>

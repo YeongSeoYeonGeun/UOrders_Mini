@@ -94,11 +94,6 @@ Page({
       url: '../menuDetail/menuDetail',
     })
   },
-  back : function(){
-    wx.navigateBack({
-      delta: 0,
-    })
-  },
   like : function(){
     console.log('hiroo')
     this.setData({
@@ -110,5 +105,10 @@ Page({
     this.setData({
       favorite: 0
     })
-  }
+  },
+  back : function(){
+    wx.navigateBack({
+      delta: 0,
+    })
+  },
 })

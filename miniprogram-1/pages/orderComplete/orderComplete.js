@@ -7,5 +7,8 @@ Page({
   },
   onLoad: function () {
     console.log('orderComplete load');
+  },
+  gohome : function(){
+    console.log('gohome');
   }
 })

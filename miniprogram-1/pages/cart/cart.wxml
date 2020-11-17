@@ -1,13 +1,14 @@
 <!--cart.wxml-->
 <view class="temp-white">
-<view class='backbtn-bar'>
-  <view class='back-btn-box'>
+  <view class="toolbar cart-top">
+  <view class="cart-toolbar"> 
     <image bindtap= "back" class='back-btn' src='../../image/ic-back.png' ></image>
+    <view class="toolbar-title-container">
+      <text class="toolbar-title-text">장바구니</text>
+    </view>
   </view>
-  <view class='cart-text'>장바구니</view>
 </view>
-<view class="border"></view>
-  
+
 <view class='cart-list-container'>
   <view class="cart-empty" wx:if="{{cartList.length == 0}}">
     장바구니가 비었습니다.

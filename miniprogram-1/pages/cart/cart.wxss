@@ -8,6 +8,14 @@
   flex-direction: column;
 }
 
+.cart-top{
+  background-color: white;
+}
+
+.cart-toolbar{
+  position: relative;
+}
+
 .backbtn-bar{
   height: 48px;
   display: flex;

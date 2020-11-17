@@ -9,10 +9,10 @@
     "pages/orderComplete/orderComplete"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#0B463C",
     "navigationBarTitleText": "UOrders",
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
   "style": "v2",

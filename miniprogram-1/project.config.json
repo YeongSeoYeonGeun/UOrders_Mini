@@ -66,8 +66,8 @@
           "scene": null
         },
         {
-          "name": "pages/cart/cart",
-          "pathName": "pages/cart/cart",
+          "name": "pages/orderComplete/orderComplete",
+          "pathName": "pages/orderComplete/orderComplete",
           "query": "",
           "scene": null
         },

@@ -7,7 +7,6 @@
 .main-top-container {
   display: flex;
   flex-direction: column;
-  height: 27vh;
   background-color: #0B463C;
 }
 
@@ -82,13 +81,12 @@
 }
 
 .cafe-scroll-page{
-  height: 73vh;
+  height: 30px;
 }
 
 .map-container{
   display: flex;
   flex-direction: column;
-  height: 73vh;
 }
 
 .map {

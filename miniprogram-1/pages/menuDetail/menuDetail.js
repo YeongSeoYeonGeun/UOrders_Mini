@@ -4,10 +4,13 @@ const app = getApp()
 Page({
   data: {
     menuName: '아메리카노',
-    menuPrice : '1,500원',
+    menuPrice : 1500,
     count : 1,
+    totalPrice : 1500,
     temperature : '',
     takeType :'',
+    sizeIndex: 0,
+    sizeType: ['Small', 'Large']
   },
   onLoad: function () {
     console.log('main load')
@@ -44,6 +47,32 @@ Page({
     wx.navigateBack({
       delta: 0,
     })
+  },
+  selectSize: function (e) {
+    this.setData({
+      sizeIndex: e.detail.value
+    })
+  }, 
+  add : function(){
+    console.log("add")
+    var tempCount = this.data.count + 1
+    var tempTotalPrice = tempCount * this.data.menuPrice
+      this.setData({
+        count: tempCount,
+        totalPrice : tempTotalPrice
+      })
+  },
+  reduce : function(){
+    console.log("reduce")
+    var tempCount = this.data.count
+    if(tempCount > 1 ){
+      tempCount = tempCount - 1
+      var tempTotalPrice = tempCount * this.data.menuPrice
+      this.setData({
+        count: tempCount,
+        totalPrice : tempTotalPrice
+      })
+    }
   }
 })
   

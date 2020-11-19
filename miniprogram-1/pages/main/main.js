@@ -31,7 +31,9 @@ const normalCallout = {
 
 Page({
   data: {
-    userIntro: '안녕하세요 시연님!',
+    userInfo: {},
+    userIntroFront: '안녕하세요 ',
+    userIntroBack: '님!',
     intro : '오늘은 어떤 음료를 주문하시겠어요?',
     nearStore : '가까운 매장',
     favoriteStore : '즐겨찾는 매장',
@@ -102,13 +104,57 @@ Page({
     this.setData({
       listSelected : true
     })
+
+    this.setUserInfo(wx.getStorageSync('userInfo'));
     // 통신 필요 (사용자 이름)
+  },
+  setUserInfo(userInfo = ""){
+    var data = {
+      hasLogin : false,
+      userInfo : {
+        nickName : '로그인이 필요합니다.'
+      }
+    };
+
+    if(userInfo){
+      data.hasLogin = true;
+      data.userInfo = userInfo;
+      wx.setStorageSync('userInfo', userInfo)
+    } else {
+      data.hasLogin = false;
+      data.userInfo = data.userInfo;
+      wx.removeStorageSync('userInfo')
+    }
+    this.setData(data);
   },
   bindCafeTap: function() {
     wx.navigateTo({
       url: '../cafemenu/cafemenu'
     })
     console.log("hiroo")
+  },
+  logIn(e) {
+    if (e.detail.userInfo == undefined) {
+      console.log('유저정보 실패!',"ERROR");
+      return;
+    }
+    this.setUserInfo(e.detail.userInfo);
+    console.log("로그인 성공!")    
+  },
+  logOut(e) {
+    let that = this;
+    wx.showModal({
+      title: 'LogOut',
+      confirmColor: '#b4282d',
+      content: '로그아웃 하시겠습니까？',
+      cancelText: "취소",
+      confirmText: "확인",
+      success: function (res) {
+        if (res.confirm) {
+          that.setUserInfo("");
+        }
+      }
+    })
   },
   getNear : function() {
     console.log('getNear 클릭')
@@ -132,6 +178,11 @@ Page({
     console.log('showList 클릭')
     this.setData({
       listSelected: true
+    })
+  },
+  orderHistory : function(){
+    wx.navigateTo({
+      url: '../orderHistory/orderHistory',
     })
   }
 

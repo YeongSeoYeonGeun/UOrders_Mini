@@ -2,11 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
+    "pages/login/login",
     "pages/main/main",
     "pages/cafemenu/cafemenu",
     "pages/cart/cart",
     "pages/menuDetail/menuDetail",
-    "pages/orderComplete/orderComplete"
+    "pages/orderComplete/orderComplete",
+    "pages/orderHistory/orderHistory"
   ],
   "window": {
     "backgroundTextStyle": "dark",

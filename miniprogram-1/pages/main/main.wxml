@@ -2,15 +2,17 @@
 <view class="toolbar main-top">
   <view class="main-toolbar"> 
     <image class="main-logo toolbar-btn" src="../../image/ic-logo@3x.png"></image>
-    <image class="my-page toolbar-btn" src="../../image/ic-mypage.png"></image>
+    <image bindtap="orderHistory" class="my-page toolbar-btn" src="../../image/ic-mypage.png"></image>
   </view>
 </view>
 <view class="main-container">
   <view class="main-top-container">
     <view class="intro-container">
-      <view class="userIntro-text"> {{userIntro}} </view>
+      <view class="userIntro-text"> {{userIntroFront}} {{userInfo.nickName}}{{userIntroBack}}</view>
       <view class="intro-text"> {{intro}} </view>
     </view>
+
+    <button wx:if="{{!hasLogin}}" open-type="getUserInfo" bindgetuserinfo="logIn" class="cu-btn bg-white text-xxl">{{userInfo.nickName}}</button>
 
     <view class="storeFilter-container">
       <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text" bindtap='getNear'>  {{ nearStore }} </view>

@@ -1,0 +1,48 @@
+<view class="height-container">
+  <!-- tool bar -->
+  <view class="toolbar orderHistory-top">
+  <view class="orderHistory-toolbar"> 
+    <image bindtap="clickBack" class="toolbar-btn" src="../../image/ic-back.png"></image>
+    <view class="toolbar-title-container">
+      <text class="toolbar-title-text">주문 내역 확인</text>
+    </view>
+  </view>
+  </view>
+  <view class="toolbar-border"></view>
+
+
+ <!-- 주문 내역 리스트 scroll-view -->
+ <block>
+    <scroll-view wx:if="{{orderHistoryList.length}}" scroll-y="{{modalName==null}}" class="orderHistory-scroll-page page {{modalName!=null?'show':''}}">
+      <view class="cu-list menu-avatar">
+        <view wx:for="{{orderHistoryList}}" wx:key="index" data-item="{{item}}">
+          <view class="orderHistory-item">
+            <view class="orderHistroy-cafeName">{{item.cafeName}}</view>
+            <view class="orderHistroy-content">{{item.orderItems[0].name}} <text wx:if="{{item.orderItems.length > 1}}" > 외 {{item.orderItems.length - 1}}개</text>  </view>
+            <view class="orderHistory-time">주문일시 : {{item.orderTime}}</view>
+
+            <view class="orderItem-box">
+            <view wx:for="{{item.orderItems}}" wx:key="index2" data-item="{{item}}">
+              <view class="orderItem-container">
+                <view class="orderItem-name">{{item.name}} {{item.count}}개</view>
+                <view class="orderItem-price">{{item.totalPrice}}원</view>
+              </view>
+            </view>
+
+            <view class="orderItem-bottom-line"></view>
+            <text class="orderHistory-totalPrice">총 결제금액 {{item.totalPrice}}원</text>
+          
+          </view>
+          <view class="orderHistory-bottom"></view>
+            <view class="orderHistory-bottom-space"></view>
+        </view>
+        </view>
+        </view>
+      </scroll-view>
+    <view wx:else>
+      <text class="text-center text-black1">데이터가 없습니다.</text>
+    </view>
+  </block>
+
+
+</view>

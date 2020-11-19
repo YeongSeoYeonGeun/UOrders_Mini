@@ -26,6 +26,11 @@
   text-align: center;
 }
 
+.toolbar-border{
+  color: #eeeeee;
+  height: 1px;
+}
+
 .container {
   height: 100%;
   display: flex;

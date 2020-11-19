@@ -66,8 +66,8 @@
           "scene": null
         },
         {
-          "name": "pages/menuDetail/menuDetail",
-          "pathName": "pages/menuDetail/menuDetail",
+          "name": "pages/orderHistory/orderHistory",
+          "pathName": "pages/orderHistory/orderHistory",
           "query": "",
           "scene": null
         },

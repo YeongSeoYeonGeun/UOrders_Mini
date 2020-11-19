@@ -10,5 +10,8 @@ Page({
   },
   gohome : function(){
     console.log('gohome');
+    wx.reLaunch({
+      url: '../main/main',
+    })
   }
 })

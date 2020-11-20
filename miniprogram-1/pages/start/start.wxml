@@ -1,0 +1,11 @@
+<!--pages/start/start.wxml-->
+<view class="start-container">
+  <image class="start-bg" src="../../image/img-start-bg@3x.png"></image>
+  <text class="start-logo">Uorders</text>
+
+  <view class="start-btn">
+    <text class="start-btn-text">시작하기</text>
+  </view>
+</view>
+
+

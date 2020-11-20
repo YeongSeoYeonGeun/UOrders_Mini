@@ -1,0 +1,41 @@
+.start-container{
+  position: relative;
+}
+
+.start-bg{
+  width: 100%;
+  height: 100vh;
+  z-index: 0px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.start-logo{
+  color: white;
+  width: fit-content;
+  font-size: 38px;
+  z-index: 1px;
+  position: absolute;
+  top: 166px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.start-btn{
+  background-color: #0b463c;
+  border-radius: 4px;
+  position: absolute;
+  top: calc(100vh - 100px);
+  width: 278px;
+  height: 52px;
+  margin: 0 48px;
+  text-align: center;
+}
+
+.start-btn-text{
+  line-height: 52px;
+  color: white;
+  font-size: 21px;
+  font-weight: 500;
+}

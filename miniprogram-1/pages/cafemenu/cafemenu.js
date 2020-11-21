@@ -1,3 +1,4 @@
+const api = require('../../utils/api.js')
 const app = getApp()
 
 Page({
@@ -79,9 +80,48 @@ Page({
       }
     ]
   },
-  onLoad: function () {
+  onLoad: function (options) {
     console.log('cafemenu load')
-    // 통신 필요 (사용자 이름)
+    
+    this.getCafeMenu(options.cafeIndex)
+  },
+  getCafeMenu : function(cafeIndex){
+    wx.showLoading({
+      title: '불러오는 중..',
+    })
+    var that = this
+
+    var url = api.url + 'cafe/' + cafeIndex;
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json'
+      },
+      success: function(res){
+        console.log(res.data);
+        if(res.statusCode == 200){
+          console.log(res.data)
+
+          let data = res.data.data
+
+          that.setData({
+            cafeName : data.cafeName
+          })
+        } else {
+          that.setData({
+            
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function(err){
+        console.log('getCafeList error : ' + err.errMsg)
+        wx.hideLoading();
+      }
+      
+    })
   },
   bindCart :function() {
     console.log('cafeMenu-bindCart function');

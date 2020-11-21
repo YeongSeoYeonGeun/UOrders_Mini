@@ -1,3 +1,4 @@
+const api = require('../../utils/api.js')
 const app = getApp()
 
 const normalCallout = {
@@ -39,50 +40,7 @@ Page({
     favoriteStore : '즐겨찾는 매장',
     nearCafeSelected : true,
     listSelected : true,
-    cafeList : [
-      {
-        index: 0,
-        name: '남산학사 cafe',
-        location: '신공학관 1층',
-        distance: '53m',
-        image: 'https://media-cdn.tripadvisor.com/media/photo-s/19/15/a7/68/gazzi-cafe.jpg'
-      },
-      {
-        index: 1,
-        name: '그루터기 cafe',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg'
-      },
-      {
-        index: 2,
-        name: '그루터기 cafe2',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 3,
-        name: '그루터기 cafe3',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'https://i.pinimg.com/originals/e5/c3/6a/e5c36ae8da0e4a92c3318e12f4a2db34.jpg'
-      },
-      {
-        index: 4,
-        name: '그루터기 cafe',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 5,
-        name: '그루터기 cafe',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      }
-    ],
+    cafeList : [],
     latitude: 37.558183,
     longitude: 127.000132,
     markers: [],
@@ -107,6 +65,44 @@ Page({
 
     this.setUserInfo(wx.getStorageSync('userInfo'));
     // 통신 필요 (사용자 이름)
+    this.getCafeList();
+  },
+  getCafeList : function(){
+    wx.showLoading({
+      title: '불러오는 중..',
+    })
+    var that = this
+
+    var url = api.url + 'home';
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'user_index' : 1
+      },
+      success: function(res){
+        console.log(res.data);
+        if(res.statusCode == 200){
+          console.log(res.data.data.cafeInfo)
+
+          that.setData({
+            cafeList : res.data.data.cafeInfo
+          })
+        } else {
+          that.setData({
+            cafeList : []
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function(err){
+        console.log('getCafeList error : ' + err.errMsg)
+        wx.hideLoading();
+      }
+      
+    })
   },
   setUserInfo(userInfo = ""){
     var data = {
@@ -127,9 +123,13 @@ Page({
     }
     this.setData(data);
   },
-  bindCafeTap: function() {
+  bindCafeTap: function(e) {
+
+    let item = e.currentTarget.dataset.item;
+    console.log('../cafemenu/cafemenu?cafeIndex=' + item.cafeIndex)
+
     wx.navigateTo({
-      url: '../cafemenu/cafemenu'
+      url: '../cafemenu/cafemenu?cafeIndex=' + item.cafeIndex,
     })
     console.log("hiroo")
   },

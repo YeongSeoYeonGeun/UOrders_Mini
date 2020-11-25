@@ -161,14 +161,11 @@ Page({
     this.setData(data);
   },
   bindCafeTap: function(e) {
-
     let item = e.currentTarget.dataset.item;
-    console.log('../cafemenu/cafemenu?cafeIndex=' + item.cafeIndex)
 
     wx.navigateTo({
       url: '../cafemenu/cafemenu?cafeIndex=' + item.cafeIndex,
     })
-    console.log("hiroo")
   },
   logIn(e) {
     if (e.detail.userInfo == undefined) {

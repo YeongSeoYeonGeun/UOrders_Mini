@@ -1,3 +1,4 @@
+const api = require('../../utils/api.js')
 const app = getApp()
 
 Page({
@@ -12,31 +13,50 @@ Page({
         taketype : 'HERE',
         count: '1',
         price: '1,000'
-      },
-      {
-        index: 1,
-        name: '카페라떼',
-        temperature: 'ICED',
-        size: 'Regular',
-        taketype: 'HERE',
-        count: '1',
-        price: '2,500'
-      },
-      {
-        index: 2,
-        name: '카페라떼2',
-        temperature: 'ICED',
-        size: 'Regular',
-        taketype: 'HERE',
-        count: '1',
-        price: '2,500'
       }
     ],
     totalprice : '4,000'
   },
   onLoad: function () {
-    console.log('cafemenu load')
-    // 통신 필요 (사용자 이름)
+    this.getCart()
+  },
+  getCart : function(){
+    wx.showLoading({
+      title: '불러오는 중..',
+    })
+    var that = this
+
+    var url = api.url + 'users/cart';
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      success: function(res){
+        if(res.statusCode == 200){
+          console.log(res.data)
+          let data = res.data.data
+
+          that.setData({
+            cafeName : data.cafeName,
+            cartList : data.cartInfo
+          })
+        } else {
+          that.setData({
+            
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function(err){
+        console.log('getCart error : ' + err.errMsg)
+        wx.hideLoading();
+      }
+      
+    })
   },
   clickOrder: function(){
     wx.navigateTo({

@@ -59,6 +59,8 @@ Page({
     })
   },
   addCart : function(){
+
+    const that = this
   
     var url = api.url + 'users/cart';
     wx.request({

@@ -1,39 +1,10 @@
 const api = require('../../utils/api.js')
 const app = getApp()
 
-const normalCallout = {
-  id: 1,
-  latitude: 37.33295,
-  longitude: 127.00005,
-  iconPath: '/image/location.png',
-  callout: {
-    content: '文本内容',
-    color: '#ff0000',
-    fontSize: 12,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: '#000000',
-    bgColor: '#fff',
-    padding: 5,
-    display: 'ALWAYS',
-    textAlign: 'center'
-  },
-  // label: {
-  //   content: 'label 文本',
-  //   fontSize: 24,
-  //   textAlign: 'center',
-  //   borderWidth: 1,
-  //   borderRadius: 5,
-  //   bgColor: '#fff',
-  //   padding: 5
-  // }
-}
-
-
 Page({
   data: {
     userInfo: {},
-    userName : '',
+    userName : '서정',
     userIntroFront: '안녕하세요 ',
     userIntroBack: '님!',
     intro : '오늘은 어떤 음료를 주문하시겠어요?',
@@ -41,12 +12,7 @@ Page({
     favoriteStore : '즐겨찾는 매장',
     nearCafeSelected : true,
     listSelected : true,
-    cafeList : [],
-    latitude: 37.558183,
-    longitude: 127.000132,
-    markers: [],
-    customCalloutMarkerIds: [],
-    num: 1
+    cafeList : []
   },
   onLaunch: function () {
     wx.getSystemInfo({

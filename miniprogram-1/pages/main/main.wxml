@@ -56,10 +56,6 @@
 
 <!-- 카페 map -->
   <view class="map-container" wx:if="{{!listSelected}}">
-    <map
-      id="myMap"
-      class="map"
-    >
-    </map>
+    <image class="map" src="../../image/img-map@2x.png"></image>
   </view>
 </view>

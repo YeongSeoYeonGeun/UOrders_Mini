@@ -6,6 +6,9 @@ Page({
     
   },
   logIn : function(){
+
+    const that = this
+
     if(app.globalData.userInfo != null){
       wx.reLaunch({
         url: '../main/main',
@@ -17,10 +20,12 @@ Page({
         success (res) {
           if (res.confirm) {
             console.log('"OK" is tapped')
-            // Todo : 로그인 통신
-            wx.reLaunch({
-              url: '../main/main',
-            })
+            
+            that.temp();
+
+            // wx.reLaunch({
+            //   url: '../main/main',
+            // })
           } else if (res.cancel) {
             console.log('"Cancel" is tapped')
             // Todo: 앱 종료
@@ -29,5 +34,26 @@ Page({
       })
       
     }
+  },
+  temp : function(){
+    wx.login({
+      success (res) {
+        if (res.code) {
+          console.log(res.code);
+          // wx.request({
+          //   url: 'https://test.com/onLogin',
+          //   data: {
+          //     code: res.code
+          //   }
+          // })
+        } else {
+          console.log('Login failed' + res.errMsg)
+        }
+      },
+      fail: function(err){
+        console.log('error : ' + err.errMsg)
+        wx.hideLoading();
+      }
+    })
   }
 })

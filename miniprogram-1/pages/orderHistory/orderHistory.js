@@ -1,62 +1,52 @@
 const app = getApp()
 
-
 Page({
   data: {
     orderHistoryList : [
       {
-        orderHistroyIndex : 0,
+        orderIndex : 0,
         cafeName : '신공카페',
-        orderTime : '2020년 11월 19일 오후 6:02',
-        orderItems : [
+        orderDate : '2020년 11월 19일 오후 6:02',
+        menuInfo : [
           {
-            name : '아메리카노', 
-            count : 1,
-            totalPrice : 1200
-          },
-          {
-            name : '카페라떼', 
-            count : 2,
-            totalPrice : 3000
+            menuName : '아메리카노', 
+            orderCount : 1,
+            orderPrice : 1200
           }
         ],
         totalPrice : 4200
-      },
-      {
-        orderHistroyIndex : 1,
-        cafeName : '신공카페',
-        orderTime : '2020년 11월 19일 오후 6:02',
-        orderItems : [
-          {
-            name : '아메리카노', 
-            count : 1,
-            totalPrice : 1200
-          }
-        ],
-        totalPrice : 1200
-      },
-      {
-        orderHistroyIndex : 1,
-        cafeName : '신공카페',
-        orderTime : '2020년 11월 19일 오후 6:02',
-        orderItems : [
-          {
-            name : '아메리카노', 
-            count : 1,
-            totalPrice : 1200
-          }
-        ],
-        totalPrice : 1200
       }
     ]
   },
   onLoad: function () {
-    console.log('main load')
-    this.setData({
-      listSelected : true
-    })
-    // 통신 필요 (사용자 이름)
+    this.getOrderHistory();
 
+  },
+  getOrderHistory : function(){
+    var that = this
+    var url = api.url + 'orders';
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      success: function(res){
+        if(res.statusCode == 200){
+          console.log(res.data)
+          let data = res.data.data
+          that.setData({
+            orderHistoryList : data.orderInfo
+          })
+        } else {
+          console.log(res)
+        }
+      },
+      fail: function(err){
+        console.log('getOrderHistory error : ' + err.errMsg)
+      }
+    })
   },
   clickBack : function(){
     wx.navigateBack({

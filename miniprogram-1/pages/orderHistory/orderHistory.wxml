@@ -18,14 +18,14 @@
         <view wx:for="{{orderHistoryList}}" wx:key="index" data-item="{{item}}">
           <view class="orderHistory-item">
             <view class="orderHistroy-cafeName">{{item.cafeName}}</view>
-            <view class="orderHistroy-content">{{item.orderItems[0].name}} <text wx:if="{{item.orderItems.length > 1}}" > 외 {{item.orderItems.length - 1}}개</text>  </view>
-            <view class="orderHistory-time">주문일시 : {{item.orderTime}}</view>
+            <view class="orderHistroy-content">{{item.menuInfo[0].menuName}} <text wx:if="{{item.orderItems.length > 1}}" > 외 {{item.menuInfo.length - 1}}개</text>  </view>
+            <view class="orderHistory-time">주문일시 : {{item.orderDate}}</view>
 
             <view class="orderItem-box">
-            <view wx:for="{{item.orderItems}}" wx:key="index2" data-item="{{item}}">
+            <view wx:for="{{item.menuInfo}}" wx:key="index2" data-item="{{item}}">
               <view class="orderItem-container">
-                <view class="orderItem-name">{{item.name}} {{item.count}}개</view>
-                <view class="orderItem-price">{{item.totalPrice}}원</view>
+                <view class="orderItem-name">{{item.menuName}} {{item.orderCount}}개</view>
+                <view class="orderItem-price">{{item.orderPrice}}원</view>
               </view>
             </view>
 

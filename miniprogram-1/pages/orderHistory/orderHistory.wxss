@@ -24,6 +24,7 @@
 .orderHistroy-cafeName{
   color: #0B463C;
   font-size: 15px;
+  margin-bottom: 5px;
   font-weight: 700;
 }
 .orderHistory-content{

@@ -11,7 +11,7 @@ Page({
     temperature : '',
     takeType :'',
     sizeIndex: 0,
-    sizeType: ['Small', 'Regular', 'Large'],
+    sizeType: ['SMALL', 'REGULAR', 'LARGE'],
     /* view에 보여주기 용 */
     selectTemperature : true,
     selectSize : true
@@ -25,6 +25,7 @@ Page({
     })
     this.getMenuDetail(options.cafeIndex, options.menuIndex)
   },
+  /* 통신 */
   getMenuDetail(cafeIndex, menuIndex){
     var that = this
     var url = api.url + 'menu?cafeIndex=' + cafeIndex + '&menuIndex=' + menuIndex;
@@ -57,26 +58,55 @@ Page({
       }
     })
   },
+  addCart : function(){
+  
+    var url = api.url + 'users/cart';
+    wx.request({
+      method : 'POST',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      data : {
+        'menuIndex' : this.data.menuIndex,
+        'menuName': this.data.menuName,
+        'menuCount': this.data.count ,
+        'menuTemperature': this.data.temperature ,
+        'menuSize': this.data.sizeType[this.data.sizeIndex],
+        'menuTakeType': this.data.takeType,
+        'menuTotalPrice' : this.data.totalPrice
+      },
+      success: function(res){
+        console.log(res)
+        if(res.statusCode == 200){
+        
+        } else {
+         
+        }
+      },
+      fail: function(err){
+        console.log('addCart error : ' + err.errMsg)
+      }
+    })
+  },
+  /* button */
   clickHot : function() {
-    console.log('hot 클릭')
     this.setData({
       temperature: 'HOT'
     })
   },
   clickIced : function() {
-    console.log('iced 클릭')
     this.setData({
       temperature: 'ICED'
     })
   },
   clickHere : function() {
-    console.log('hot 클릭')
     this.setData({
       takeType: 'HERE'
     })
   },
   clickTogo : function() {
-    console.log('togo 클릭')
     this.setData({
       takeType: 'TOGO'
     })
@@ -92,7 +122,6 @@ Page({
     })
   }, 
   add : function(){
-    console.log("add")
     var tempCount = this.data.count + 1
     var tempTotalPrice = tempCount * this.data.menuPrice
       this.setData({
@@ -101,7 +130,6 @@ Page({
       })
   },
   reduce : function(){
-    console.log("reduce")
     var tempCount = this.data.count
     if(tempCount > 1 ){
       tempCount = tempCount - 1

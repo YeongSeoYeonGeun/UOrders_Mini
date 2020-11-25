@@ -3,88 +3,27 @@ const app = getApp()
 
 Page({
   data: {
+    cafeIndex : 0,
     cafeName: '남산학사 cafe',
     cafeLocation : '신공학관 1층', 
     favorite : 0,
     menuList: [
       {
-        index: 0,
-        name: '아메리카노',
-        price: '1,000원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 1,
-        name: '카페라떼',
-        price: '1,500원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      }, 
-      {
-        index: 2,
-        name: '아메리카노',
-        price: '1,000원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 3,
-        name: '카페라떼',
-        price: '1,500원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 4,
-        name: '아메리카노',
-        price: '1000원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 5,
-        name: '카페라떼',
-        price: '1500원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 6,
-        name: '아메리카노',
-        price: '1000원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 7,
-        name: '카페라떼',
-        price: '1500원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      }, {
-        index: 8,
-        name: '아메리카노',
-        price: '1000원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 9,
-        name: '카페라떼',
-        price: '1500원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 10,
-        name: '아메리카노',
-        price: '1000원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 11,
-        name: '카페라떼',
-        price: '1500원',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+        menuIndex: 0,
+        menuName: '아메리카노',
+        menuPrice: '1,000원',
+        menuImage: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
       }
     ]
   },
   onLoad: function (options) {
     console.log('cafemenu load')
-    
+    this.setData({
+      cafeIndex : options.cafeIndex
+    })
     this.getCafeMenu(options.cafeIndex)
   },
+  /* 통신 */
   getCafeMenu : function(cafeIndex){
     wx.showLoading({
       title: '불러오는 중..',
@@ -96,24 +35,24 @@ Page({
       method : 'GET',
       url: url,
       header: { 
-        'content-type' : 'application/json'
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
       },
       success: function(res){
         console.log(res.data);
         if(res.statusCode == 200){
-          console.log(res.data)
-
           let data = res.data.data
-
           that.setData({
-            cafeName : data.cafeName
+            cafeName : data.cafeName,
+            cafeLocation : data.cafeLocation,
+            favorite : data.isFavorite,
+            menuList : data.menuInfo
           })
         } else {
           that.setData({
             
           })
         }
-
         wx.hideLoading();
       },
       fail: function(err){
@@ -122,6 +61,62 @@ Page({
       }
       
     })
+  },
+  manageLike : function(){
+    var that = this
+    var url = api.url + 'users/favorite';
+
+    if(this.data.favorite == 0){
+      wx.request({
+        method : 'POST',
+        url: url,
+        header: { 
+          'content-type' : 'application/json',
+          'userIndex' : app.globalData.userIndex
+        },
+        data : {
+          'cafeIndex' : this.data.cafeIndex
+        },
+        success: function(res){
+          if(res.statusCode == 200){
+            that.setData({
+              favorite: 1
+            })
+          } else {
+            wx.showToast({
+              title: '매장 즐겨찾기에 실패했습니다.'
+            })
+          }
+        },
+        fail: function(err){
+          console.log('like cafe error : ' + err.errMsg)
+        }
+      })
+    } else {
+      wx.request({
+        method : 'DELETE',
+        url: url,
+        header: { 
+          'content-type' : 'application/json',
+          'userIndex' : app.globalData.userIndex,
+          'cafeIndex' : this.data.cafeIndex
+        },
+        success: function(res){
+          if(res.statusCode == 200){
+            that.setData({
+              favorite: 0
+            })
+          } else {
+            wx.showToast({
+              title: '매장 즐겨찾기 취소에 실패했습니다.'
+            })
+          }
+        },
+        fail: function(err){
+          console.log('unlike cafe error : ' + err.errMsg)
+        }
+      })
+    }
   },
   bindCart :function() {
     console.log('cafeMenu-bindCart function');
@@ -132,18 +127,6 @@ Page({
   clickMenu : function(){
     wx.navigateTo({
       url: '../menuDetail/menuDetail',
-    })
-  },
-  like : function(){
-    console.log('hiroo')
-    this.setData({
-      favorite: 1
-    })
-  },
-  unlike : function(){
-    console.log('unlike')
-    this.setData({
-      favorite: 0
     })
   },
   back : function(){

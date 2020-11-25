@@ -9,8 +9,8 @@
     <view class="name-and-location">
       <view class="cafeName-text text-black1"> {{cafeName}} </view>
       <view class="cafeLocation-text text-black3"> {{cafeLocation}} </view>
-      <image wx:if="{{favorite==0}}" class='cafe-like-btn' bindtap="like" src="../../image/ic-like.png"></image>
-      <image wx:if="{{favorite==1}}" class='cafe-unlike-btn' bindtap="unlike" src="../../image/ic-like-active.png"></image>
+      <image wx:if="{{favorite==0}}" class='cafe-like-btn' bindtap="manageLike" src="../../image/ic-like.png"></image>
+      <image wx:if="{{favorite==1}}" class='cafe-unlike-btn' bindtap="manageLike" src="../../image/ic-like-active.png"></image>
     </view>
   <view class="cafemenu-middle-line"> </view>
 </view>
@@ -26,12 +26,12 @@
         <view class="menu-item" bindtap="clickMenu">
           <!--메뉴 이름과 가격-->
           <view class="menu-content">
-            <view class='menu-name'> {{item.name}} </view>
-            <view class="menu-price"> {{item.price}} </view>
+            <view class='menu-name'> {{item.menuName}} </view>
+            <view class="menu-price"> {{item.menuPrice}} 원</view>
           </view>
           <!--메뉴 사진-->
-          <view class="menu-image" style="background-image:url('item.image');">
-            <text wx:if="{{!item.image}}" class="cuIcon-picfill lg text-gray"></text>
+          <view class="menu-image" style="background-image:url('item.menuImage');">
+            <!-- <text wx:if="{{!item.image}}" class="cuIcon-picfill lg text-gray"></text> -->
           </view>
         </view>
         <view class="border"></view>

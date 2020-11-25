@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    isLogin : null
+    isLogin : null,
+    userIndex : 2
   }
 })

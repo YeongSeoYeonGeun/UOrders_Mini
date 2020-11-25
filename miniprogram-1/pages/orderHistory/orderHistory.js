@@ -1,3 +1,4 @@
+const api = require('../../utils/api.js')
 const app = getApp()
 
 Page({

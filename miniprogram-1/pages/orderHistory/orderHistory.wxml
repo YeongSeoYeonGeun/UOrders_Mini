@@ -18,7 +18,7 @@
         <view wx:for="{{orderHistoryList}}" wx:key="index" data-item="{{item}}">
           <view class="orderHistory-item">
             <view class="orderHistroy-cafeName">{{item.cafeName}}</view>
-            <view class="orderHistroy-content">{{item.menuInfo[0].menuName}} <text wx:if="{{item.orderItems.length > 1}}" > 외 {{item.menuInfo.length - 1}}개</text>  </view>
+            <view class="orderHistroy-content">{{item.menuInfo[0].menuName}} <text wx:if="{{item.menuInfo.length > 1}}" > 외 {{item.menuInfo.length - 1}}개</text>  </view>
             <view class="orderHistory-time">주문일시 : {{item.orderDate}}</view>
 
             <view class="orderItem-box">

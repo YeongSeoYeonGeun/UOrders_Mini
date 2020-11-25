@@ -22,7 +22,7 @@
     <image bindtap="add" class="menu-count-up" src="../../image/ic-count-up@3x.png"></image>
   </view>
   <!-- Hot or Iced -->
-  <view class="menu-temperature-container">
+  <view wx:if="{{selectTemperature}}" class="menu-temperature-container">
     <view wx:if="{{temperature == 'HOT'}}" class="menu-temparature-hot-selected">
       <text class="menu-temparature-text text-white text-size16">HOT</text>
     </view>
@@ -37,7 +37,7 @@
     </view>
   </view>
 
-  <view class="menu-size-container">
+  <view wx:if="{{selectSize}}" class="menu-size-container">
     <text class="text-size11">사이즈 선택</text>
     <picker bindchange="selectSize" value="{{sizeIndex}}" range="{{sizeType}}">
       <view class="menu-size-box">

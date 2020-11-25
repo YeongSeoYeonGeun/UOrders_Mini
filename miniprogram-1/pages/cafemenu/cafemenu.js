@@ -21,6 +21,7 @@ Page({
     this.setData({
       cafeIndex : options.cafeIndex
     })
+    console.log('cafeIndex' + this.data.cafeIndex)
     this.getCafeMenu(options.cafeIndex)
   },
   /* 통신 */
@@ -124,9 +125,11 @@ Page({
       url: '../cart/cart'
     })
   },
-  clickMenu : function(){
+  clickMenu: function(e) {
+    let item = e.currentTarget.dataset.item;
+    console.log(this.data.cafeIndex)
     wx.navigateTo({
-      url: '../menuDetail/menuDetail',
+      url: '../menuDetail/menuDetail?cafeIndex=' + this.data.cafeIndex + '&menuIndex=' + item.menuIndex
     })
   },
   back : function(){

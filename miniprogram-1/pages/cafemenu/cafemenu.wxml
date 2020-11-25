@@ -22,8 +22,8 @@
   <scroll-view wx:if="{{menuList.length}}" scroll-y="{{modalName==null}}" 
   class="menu-list-scrollview page {{modalName!=null?'show':''}}" >
     <view class="menu-list">
-      <view wx:for="{{menuList}}" wx:key="index" data-item="{{item}}">
-        <view class="menu-item" bindtap="clickMenu">
+      <view wx:for="{{menuList}}" bindtap="clickMenu" wx:key="index" data-item="{{item}}">
+        <view class="menu-item">
           <!--메뉴 이름과 가격-->
           <view class="menu-content">
             <view class='menu-name'> {{item.menuName}} </view>

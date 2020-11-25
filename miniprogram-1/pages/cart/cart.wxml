@@ -29,7 +29,7 @@
           </view>
 
           <view class='info-area'>
-            <text class='info-text'>{{item.menuTemperature}}/{{item.menuSize}}/{{item.menuSize}}</text>
+            <text class='info-text'>{{item.menuTemperature}}/{{item.menuSize}}/{{item.menuTakeType}}</text>
           </view>
 
           <view class='count-price-area'>
@@ -48,7 +48,7 @@
 </scroll-view>
 
 </view>
-  <view wx:if="{{cartList.length}}" class='order-button-area' bindtap="clickOrder">
-    <text class='price-order-text'>{{totalprice}}원 주문하기</text>
+  <view wx:if="{{cartList.length}}" class='order-button-area' bindtap="order">
+    <text class='price-order-text'>{{totalPrice}}원 주문하기</text>
   </view>
 </view>

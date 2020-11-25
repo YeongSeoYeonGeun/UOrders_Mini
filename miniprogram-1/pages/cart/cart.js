@@ -3,6 +3,7 @@ const app = getApp()
 
 Page({
   data: {
+    cafeIndex : 0,
     cafeName: '남산학사 cafe',
     cartList: [
       {
@@ -15,11 +16,12 @@ Page({
         menuPrice: '1,000'
       }
     ],
-    totalprice : '4,000'
+    totalPrice : '4,000'
   },
   onLoad: function () {
     this.getCart()
   },
+  /* 통신 */
   getCart : function(){
     wx.showLoading({
       title: '불러오는 중..',
@@ -40,8 +42,10 @@ Page({
           let data = res.data.data
 
           that.setData({
+            cafeIndex : data.cafeIndex,
             cafeName : data.cafeName,
-            cartList : data.cartInfo
+            cartList : data.cartInfo,
+            totalPrice : data.totalPrice
           })
         }
         wx.hideLoading();
@@ -52,6 +56,50 @@ Page({
       }
       
     })
+  },
+  order : function(){
+
+    let today = new Date();
+    let orderDate = today.getFullYear() + '-' +  today.getMonth() + '-' + today.getDate()
+   
+    let hours = today.getHours();
+    let minutes = today.getMonth();
+    let seconds = today.getSeconds();
+    let orderTime = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes }`: minutes }:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+    let orderDateTime = orderDate + ' ' + orderTime;
+
+    console.log(this.data.cafeIndex)
+    console.log(orderDateTime)
+
+    var url = api.url + 'orders';
+
+    wx.request({
+      method : 'POST',
+      url: url,
+      header: { 
+        'content-type' : 'application/json'
+      },
+      data : {
+        'userIndex' : app.globalData.userIndex,
+        'cafeIndex' : this.data.cafeIndex,
+        'orderDateTime' : orderDateTime
+      },
+  
+      success: function(res){
+        if(res.statusCode == 200){
+          console.log(res)
+         
+          wx.navigateTo({
+            url: '../orderComplete/orderComplete',
+          })
+        }
+      },
+      fail: function(err){
+        console.log('order error : ' + err.errMsg)
+      }
+    })
+
   },
   clickOrder: function(){
     wx.navigateTo({

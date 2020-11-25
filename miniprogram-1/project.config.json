@@ -65,8 +65,8 @@
           "scene": null
         },
         {
-          "name": "pages/menuDetail/menuDetail",
-          "pathName": "pages/menuDetail/menuDetail",
+          "name": "pages/start/start",
+          "pathName": "pages/start/start",
           "query": "cafeIndex=7",
           "scene": null
         },

@@ -24,16 +24,16 @@
       <view wx:for="{{cartList}}" wx:key="index" data-item="{{item}}">
       <view class='cart-item-box'>
           <view class='name-cancel-area'>
-            <text class='name-text'>{{item.name}}</text>
+            <text class='name-text'>{{item.menuName}}</text>
             <image data-item="{{item}}" bindtap="deleteMenu" class='cancel-btn' src='../../image/ic-cancel.png' ></image>
           </view>
 
           <view class='info-area'>
-            <text class='info-text'>{{item.temperature}}/{{item.size}}/{{item.taketype}}</text>
+            <text class='info-text'>{{item.menuTemperature}}/{{item.menuSize}}/{{item.menuSize}}</text>
           </view>
 
           <view class='count-price-area'>
-            <text class='count-price-text'>{{item.count}}개 {{item.price}}원</text>
+            <text class='count-price-text'>{{item.menuCount}}개 {{item.menuPrice}}원</text>
           </view>
       </view>
       <view class="item-border"></view>

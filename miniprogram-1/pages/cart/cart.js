@@ -6,13 +6,13 @@ Page({
     cafeName: '남산학사 cafe',
     cartList: [
       {
-        index: 0,
-        name: '아메리카노',
-        temperature : 'ICED',
-        size : 'Regular',
-        taketype : 'HERE',
-        count: '1',
-        price: '1,000'
+        menuIndex: 0,
+        menuName: '아메리카노',
+        menuTemperature : 'ICED',
+        menuSize : 'Regular',
+        menuTakeType : 'HERE',
+        menuCount: '1',
+        menuPrice: '1,000'
       }
     ],
     totalprice : '4,000'
@@ -43,12 +43,7 @@ Page({
             cafeName : data.cafeName,
             cartList : data.cartInfo
           })
-        } else {
-          that.setData({
-            
-          })
         }
-
         wx.hideLoading();
       },
       fail: function(err){

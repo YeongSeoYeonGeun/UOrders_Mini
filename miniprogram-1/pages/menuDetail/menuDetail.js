@@ -80,9 +80,11 @@ Page({
       success: function(res){
         console.log(res)
         if(res.statusCode == 200){
-        
+          that.clickBack()
         } else {
-         
+          wx.toast({
+            title: '추가 실패',
+          })
         }
       },
       fail: function(err){
@@ -139,6 +141,24 @@ Page({
         totalPrice : tempTotalPrice
       })
     }
+  },
+  clickAddCart : function(){
+
+    let temperatureBool = this.data.selectTemperature
+    let takeTypeBool = false
+
+    if(temperatureBool && this.data.temperature == '') temperatureBool = false
+    if(this.data.takeType != '') takeTypeBool = true
+
+    if(temperatureBool && takeTypeBool){
+      this.addCart()
+    } else {
+      wx.showModal({
+        title: '장바구니 담기 실패',
+        content: '입력되지 않은 정보가 있습니다.'
+      })
+    }
+    
   }
 })
   

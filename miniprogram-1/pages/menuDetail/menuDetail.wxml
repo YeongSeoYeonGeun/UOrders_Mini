@@ -61,7 +61,7 @@
     </view>
   </view>
 
-  <view class="menu-add-container" bindtap="addCart">
+  <view class="menu-add-container" bindtap="clickAddCart">
     <text class="menu-add-text text-size20">{{count}}개 담기</text>
     <text class="menu-add-price-text text-size14">{{totalPrice}}원</text>
   </view>

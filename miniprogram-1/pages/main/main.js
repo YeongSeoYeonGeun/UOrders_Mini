@@ -33,6 +33,7 @@ const normalCallout = {
 Page({
   data: {
     userInfo: {},
+    userName : '',
     userIntroFront: '안녕하세요 ',
     userIntroBack: '님!',
     intro : '오늘은 어떤 음료를 주문하시겠어요?',
@@ -79,13 +80,49 @@ Page({
       url: url,
       header: { 
         'content-type' : 'application/json',
-        'user_index' : 1
+        'userIndex' : app.globalData.userIndex
       },
       success: function(res){
         console.log(res.data);
         if(res.statusCode == 200){
-          console.log(res.data.data.cafeInfo)
 
+          let data = res.data.data
+          that.setData({
+            userName : data.userName,
+            cafeList : data.cafeInfo
+          })
+        } else {
+          that.setData({
+            cafeList : []
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function(err){
+        console.log('getCafeList error : ' + err.errMsg)
+        wx.hideLoading();
+      }
+      
+    })
+  },
+  getFavoriteCafeList : function(){
+    wx.showLoading({
+      title: '불러오는 중..',
+    })
+    var that = this
+
+    var url = api.url + 'users/favorite';
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      success: function(res){
+        if(res.statusCode == 200){
+          console.log(res.data.data.cafeInfo)
           that.setData({
             cafeList : res.data.data.cafeInfo
           })
@@ -157,16 +194,16 @@ Page({
     })
   },
   getNear : function() {
-    console.log('getNear 클릭')
     this.setData({
       nearCafeSelected: true
     })
+    this.getCafeList();
   },
   getFavorite : function() {
-    console.log('getFavorite 클릭')
     this.setData({
       nearCafeSelected: false
     })
+    this.getFavoriteCafeList();
   },
   showMap : function() {
     console.log('showMap 클릭')

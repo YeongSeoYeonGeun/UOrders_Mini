@@ -58,10 +58,9 @@
 }
 
 .storeFilter-text { 
-  color : white;
   font-size: 12px;
   margin-left: 10px;
-  font-weight: lighter;
+  font-weight: 300;
   flex: none;
   margin-top: auto;
   margin-bottom: 10px;
@@ -150,7 +149,7 @@
   background-color: #dddddd;
 }
 
-
 .text-center{
-  text-align: center;
+  margin: auto;
+  margin-top: 160px;
 }

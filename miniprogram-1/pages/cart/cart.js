@@ -8,6 +8,7 @@ Page({
     cartIndex : 0,
     cartList: [
       {
+        cartMenuIndex : 0,
         menuIndex: 0,
         menuName: '아메리카노',
         menuTemperature : 'ICED',
@@ -110,18 +111,58 @@ Page({
   },
   deleteMenu(e) {
     let deleteItem = e.currentTarget.dataset.item;
-    const idx = this.data.cartList.findIndex(function(item) {return item.index === deleteItem.index})
-    this.data.cartList.splice(idx, 1)
-    console.log(this.data.cartList)
-    this.setData({
-      cartList: this.data.cartList
+    console.log(deleteItem);
+
+    var that = this;
+    var emptyList = [];
+    var url = api.url + 'users/cartMenu';
+
+    wx.request({
+      method : 'DELETE',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex,
+        'cartMenuIndex' : deleteItem.cartMenuIndex
+      },
+      success: function(res){
+        if(res.statusCode == 200){
+         that.getCart();
+        }
+      },
+      fail: function(err){
+        console.log('order error : ' + err.errMsg)
+      }
     })
+
+
+
   },
   deleteAll : function() {
+    var that = this;
     var emptyList = [];
-    this.setData({
-      cartList: emptyList
+    var url = api.url + 'users/cart';
+
+    wx.request({
+      method : 'DELETE',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex,
+        'cartIndex' : this.data.cartIndex
+      },
+      success: function(res){
+        if(res.statusCode == 200){
+         that.setData({
+           cartList : emptyList
+         })
+        }
+      },
+      fail: function(err){
+        console.log('order error : ' + err.errMsg)
+      }
     })
+
   },
   back : function(){
     wx.navigateBack({

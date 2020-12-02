@@ -3,7 +3,7 @@
   <image class="start-bg" src="../../image/img-start-bg@3x.png"></image>
   <text class="start-logo">Uorders</text>
 
-  <view bindtap="logIn" class="start-btn">
+  <view bindtap="getUserSetting" class="start-btn">
     <text class="start-btn-text">시작하기</text>
   </view>
 </view>

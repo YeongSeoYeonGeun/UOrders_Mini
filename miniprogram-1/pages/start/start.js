@@ -1,12 +1,34 @@
+
+const api = require('../../utils/api.js')
 const app = getApp()
 
 Page({
   onLoad: function () {
-    console.log('page load')
+    // userName 가져오기
+    var that = this
+    wx.getStorage({
+      key: 'userNickName',
+      success (res) {
+        app.globalData.userName = res.data
+      }
+    })
+
+     // userIndex 받아오기
+     wx.getStorage({
+       key: 'userIndex',
+       success (res) {
+        //  that.setData({
+        //   userIndex : res.data
+        //  })
+         app.globalData.userIndex = res.data
+       },
+       fail: function(err){
+         console.log('get userIndex error : ' + err.errMsg)
+       }
+     })
     
   },
-  logIn : function(){
-
+  loginSuccess : function(){
     const that = this
 
     if(app.globalData.userInfo != null){
@@ -21,7 +43,7 @@ Page({
           if (res.confirm) {
             console.log('"OK" is tapped')
             
-            that.temp();
+            that.login();
 
             // wx.reLaunch({
             //   url: '../main/main',
@@ -35,17 +57,41 @@ Page({
       
     }
   },
-  temp : function(){
+  login : function(){
+    var that = this;
     wx.login({
       success (res) {
         if (res.code) {
           console.log(res.code);
-          // wx.request({
-          //   url: 'https://test.com/onLogin',
-          //   data: {
-          //     code: res.code
-          //   }
-          // })
+
+          var url = api.url + 'users/login';
+          wx.request({
+            method : 'POST',
+            url: url,
+            header: { 
+              'content-type' : 'application/json'
+            },
+            data : {
+              'userIndex' : app.globalData.userIndex,
+              'userName' : app.globalData.userName,
+              'js_code' : res.code
+            },
+            success: function(res){
+              if(res.statusCode == 200){
+                console.log(res.data)
+                app.globalData.userIndex = res.data.data.userIndex
+                 wx.setStorageSync('userIndex', res.data.data.userIndex)
+                that.loginSuccess();
+              } else {
+                console.log(res)
+              }
+            },
+            fail: function(err){
+              console.log('getOrderHistory error : ' + err.errMsg)
+            }
+          })
+
+          
         } else {
           console.log('Login failed' + res.errMsg)
         }
@@ -53,6 +99,27 @@ Page({
       fail: function(err){
         console.log('error : ' + err.errMsg)
         wx.hideLoading();
+      }
+    })
+  },
+  getUserSetting : function() {
+    var that = this;
+    wx.getSetting({
+      success(res){
+        console.log(res.authSetting);
+
+        if(!res.authSetting){
+          wx.getUserInfo({
+            lang: 'en',
+            success(res) { 
+              console.log(res.userInfo);
+              app.globalData.userInfo = res.userInfo
+            }
+          })
+        } else {
+          that.login();
+        }
+        
       }
     })
   }

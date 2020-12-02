@@ -62,7 +62,7 @@ Page({
     wx.login({
       success (res) {
         if (res.code) {
-          console.log(res.code);
+          console.log('code ' + res.code);
 
           var url = api.url + 'users/login';
           wx.request({

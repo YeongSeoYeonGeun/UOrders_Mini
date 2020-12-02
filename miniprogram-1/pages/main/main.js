@@ -15,6 +15,7 @@ Page({
     cafeList : []
   },
   onLaunch: function () {
+
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
@@ -25,8 +26,13 @@ Page({
     })
   },
   onLoad: function () {
-    var that = this
 
+    this.setData({
+      listSelected : true
+    })
+
+    var that = this
+    // userName 가져오기
     wx.getStorage({
       key: 'userNickName',
       success (res) {
@@ -36,11 +42,6 @@ Page({
       }
     })
 
-    this.setData({
-      listSelected : true
-    })
-
-    this.setUserInfo(wx.getStorageSync('userInfo'));
     this.getCafeList();
   },
   getCafeList : function(){

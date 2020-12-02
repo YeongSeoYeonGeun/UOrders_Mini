@@ -38,7 +38,7 @@ Page({
           console.log(res.data)
           let data = res.data.data
           that.setData({
-            orderHistoryList : data.orderInfo
+            orderHistoryList : data
           })
         } else {
           console.log(res)

@@ -71,7 +71,13 @@ Page({
     })
   },
   order : function(){
+
+    var that = this
     var url = api.url + 'orders/pay';
+
+    wx.showLoading({
+      title: '불러오는 중..',
+    })
 
     wx.request({
       method : 'GET',
@@ -82,11 +88,28 @@ Page({
       },
       success: function(res){
         if(res.statusCode == 200){
-          console.log(res)
-         
-          // wx.navigateTo({
-          //   url: '../orderComplete/orderComplete',
-          // })
+          // 결제 성공했다고 가정.
+          that.pay()
+
+          var data = res.data.data;
+          wx.requestPayment({
+            nonceStr: data.nonceStr,
+            package: data.package_,
+            paySign: data.paySign,
+            timeStamp: data.timeStamp,
+            signType : data.signType,
+            success (res) {
+              console.log('결제 성공!')
+              wx.hideLoading();
+            },
+            fail (res) { 
+              console.log('결제 실패ㅜ')
+              wx.hideLoading();
+              wx.navigateTo({
+                url: '../orderComplete/orderComplete',
+              })
+            }
+          })
         }
       },
       fail: function(err){
@@ -97,16 +120,18 @@ Page({
   pay : function(){
 
     let today = new Date();
-    let orderDate = today.getFullYear() + '-' +  today.getMonth() + '-' + today.getDate()
-   
+    
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let date = today.getDate();
+    let orderDate = `${year}-${month < 10 ? `0${month }`: month }-${date < 10 ? `0${date}` : date}`;
+
     let hours = today.getHours();
-    let minutes = today.getMonth();
+    let minutes = today.getMinutes();
     let seconds = today.getSeconds();
     let orderTime = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes }`: minutes }:${seconds < 10 ? `0${seconds}` : seconds}`;
 
     let orderDateTime = orderDate + ' ' + orderTime;
-
-    console.log(this.data.cafeIndex)
     console.log(orderDateTime)
 
     var url = api.url + 'orders';
@@ -126,10 +151,6 @@ Page({
       success: function(res){
         if(res.statusCode == 200){
           console.log(res)
-         
-          wx.navigateTo({
-            url: '../orderComplete/orderComplete',
-          })
         }
       },
       fail: function(err){

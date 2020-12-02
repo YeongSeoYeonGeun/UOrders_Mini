@@ -60,7 +60,41 @@ Page({
       
     })
   },
+  checkSessionBeforeOrder : function(){
+    wx.checkSession({
+      success: (res) => {
+        this.order();
+      },
+      fail: (err) => {
+        this.login();
+      }
+    })
+  },
   order : function(){
+    var url = api.url + 'orders/pay';
+
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      success: function(res){
+        if(res.statusCode == 200){
+          console.log(res)
+         
+          // wx.navigateTo({
+          //   url: '../orderComplete/orderComplete',
+          // })
+        }
+      },
+      fail: function(err){
+        console.log('order error : ' + err.errMsg)
+      }
+    })
+  },
+  pay : function(){
 
     let today = new Date();
     let orderDate = today.getFullYear() + '-' +  today.getMonth() + '-' + today.getDate()
@@ -135,8 +169,6 @@ Page({
       }
     })
 
-
-
   },
   deleteAll : function() {
     var that = this;
@@ -167,6 +199,51 @@ Page({
   back : function(){
     wx.navigateBack({
       delta: 0,
+    })
+  },
+  login : function(){
+    var that = this;
+    wx.login({
+      success (res) {
+        if (res.code) {
+          console.log(res.code);
+
+          var url = api.url + 'users/login';
+          wx.request({
+            method : 'POST',
+            url: url,
+            header: { 
+              'content-type' : 'application/json'
+            },
+            data : {
+              'userIndex' : app.globalData.userIndex,
+              'userName' : app.globalData.userName,
+              'js_code' : res.code
+            },
+            success: function(res){
+              if(res.statusCode == 200){
+                console.log(res.data)
+                app.globalData.userIndex = res.data.data.userIndex
+                wx.setStorageSync('userIndex', res.data.data.userIndex)
+                that.checkSessionBeforeOrder();
+              } else {
+                console.log(res)
+              }
+            },
+            fail: function(err){
+              console.log('login at cart error : ' + err.errMsg)
+            }
+          })
+
+          
+        } else {
+          console.log('Login failed' + res.errMsg)
+        }
+      },
+      fail: function(err){
+        console.log('error : ' + err.errMsg)
+        wx.hideLoading();
+      }
     })
   },
 })

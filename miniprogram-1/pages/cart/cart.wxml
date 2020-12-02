@@ -48,7 +48,7 @@
 </scroll-view>
 
 </view>
-  <view wx:if="{{cartList.length}}" class='order-button-area' bindtap="order">
+  <view wx:if="{{cartList.length}}" class='order-button-area' bindtap="checkSessionBeforeOrder">
     <text class='price-order-text'>{{totalPrice}}원 주문하기</text>
   </view>
 </view>

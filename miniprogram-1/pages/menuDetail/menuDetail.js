@@ -3,6 +3,7 @@ const app = getApp()
 
 Page({
   data: {
+    cafeIndex : 0,
     menuIndex : 0,
     menuName: '아메리카노',
     menuPrice : 1500,
@@ -21,13 +22,17 @@ Page({
     console.log(options)
 
     this.setData({
-      menuIndex : options.menuIndex
+      menuIndex : options.menuIndex,
+      cafeIndex : options.cafeIndex
     })
     this.getMenuDetail(options.cafeIndex, options.menuIndex)
   },
   /* 통신 */
   getMenuDetail(cafeIndex, menuIndex){
     var that = this
+
+    console.log(cafeIndex + ", " + menuIndex)
+
     var url = api.url + 'menu?cafeIndex=' + cafeIndex + '&menuIndex=' + menuIndex;
     wx.request({
       method : 'GET',
@@ -42,10 +47,8 @@ Page({
           let data = res.data.data.menuInfo
 
           that.setData({
-            menuPrice : data.menuIndex,
             menuName : data.menuName,
             menuPrice : data.menuPrice,
-            totalPrice : data.menuPrice,
             selectTemperature :  data.selectTemperature,
             selectSize : data.selectSize
           })
@@ -60,17 +63,19 @@ Page({
   },
   addCart : function(){
 
+    console.log('cafeIndex ' + this.data.cafeIndex);
+
     const that = this
-  
-    var url = api.url + 'users/cart';
+    var url = api.url + 'users/cartMenu';
     wx.request({
       method : 'POST',
       url: url,
       header: { 
         'content-type' : 'application/json',
-        'userIndex' : app.globalData.userIndex
+        'userIndex' : app.globalData.userIndex,
       },
       data : {
+        'cafeIndex' : this.data.cafeIndex,
         'menuIndex' : this.data.menuIndex,
         'menuName': this.data.menuName,
         'menuCount': this.data.count ,

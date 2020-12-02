@@ -4,7 +4,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    userName : '서정',
+    userName : '',
     userIntroFront: '안녕하세요 ',
     userIntroBack: '님!',
     intro : '오늘은 어떤 음료를 주문하시겠어요?',
@@ -25,13 +25,22 @@ Page({
     })
   },
   onLoad: function () {
-    console.log('main load')
+    var that = this
+
+    wx.getStorage({
+      key: 'userNickName',
+      success (res) {
+        that.setData({
+          userName : res.data
+        })
+      }
+    })
+
     this.setData({
       listSelected : true
     })
 
     this.setUserInfo(wx.getStorageSync('userInfo'));
-    // 통신 필요 (사용자 이름)
     this.getCafeList();
   },
   getCafeList : function(){
@@ -54,7 +63,6 @@ Page({
 
           let data = res.data.data
           that.setData({
-            userName : data.userName,
             cafeList : data.cafeInfo
           })
         } else {
@@ -90,7 +98,7 @@ Page({
         if(res.statusCode == 200){
           console.log(res.data.data.cafeInfo)
           that.setData({
-            cafeList : res.data.data.cafeInfo
+            cafeList : res.data.data
           })
         } else {
           that.setData({

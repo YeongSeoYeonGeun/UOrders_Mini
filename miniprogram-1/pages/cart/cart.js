@@ -5,6 +5,7 @@ Page({
   data: {
     cafeIndex : 0,
     cafeName: '남산학사 cafe',
+    cartIndex : 0,
     cartList: [
       {
         menuIndex: 0,
@@ -13,7 +14,7 @@ Page({
         menuSize : 'Regular',
         menuTakeType : 'HERE',
         menuCount: '1',
-        menuPrice: '1,000'
+        menuOrderPrice: '1,000'
       }
     ],
     totalPrice : '4,000'
@@ -42,9 +43,10 @@ Page({
           let data = res.data.data
 
           that.setData({
+            cartIndex : data.cartIndex,
             cafeIndex : data.cafeIndex,
             cafeName : data.cafeName,
-            cartList : data.cartInfo,
+            cartList : data.cartMenuInfo,
             totalPrice : data.totalPrice
           })
         }

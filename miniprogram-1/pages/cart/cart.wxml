@@ -33,7 +33,7 @@
           </view>
 
           <view class='count-price-area'>
-            <text class='count-price-text'>{{item.menuCount}}개 {{item.menuPrice}}원</text>
+            <text class='count-price-text'>{{item.menuCount}}개 {{item.menuOrderPrice}}원</text>
           </view>
       </view>
       <view class="item-border"></view>

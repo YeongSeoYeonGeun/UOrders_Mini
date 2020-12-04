@@ -3,7 +3,26 @@ const api = require('../../utils/api.js')
 const app = getApp()
 
 Page({
+  data : {
+    languageIndex: 0,
+    languageType: ['한국어', '中文',],
+    startText : ''
+  },
   onLoad: function () {
+    // 언어 설정
+    var lang = wx.getStorageSync('lang')
+    if(lang == 'ko'){
+      this.setData({
+        languageIndex : 0,
+        startText : '시작하기'
+      })
+    } else {
+      this.setData({
+        languageIndex : 1,
+        startText : '入门'
+      })
+    }
+
     // userName 가져오기
     var that = this
     wx.getStorage({
@@ -120,6 +139,40 @@ Page({
           that.login();
         }
         
+      }
+    })
+  },
+  setLanguage : function(e){
+    this.setData({
+      languageIndex: e.detail.value
+    })
+
+    var lang = ''
+
+    if(this.data.languageIndex == 0){
+      lang = 'ko'
+      wx.setStorageSync('lang', 'ko')
+      this.setData({
+        startText : '시작하기'
+      })
+    } else {
+      lang = 'zh'
+      wx.setStorageSync('lang', 'zh')
+      this.setData({
+        startText : '入门'
+      })
+    }
+
+    var url = api.url + 'users/language';
+    wx.request({
+      method : 'PUT',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      data : {
+        'languageCode' : lang
       }
     })
   }

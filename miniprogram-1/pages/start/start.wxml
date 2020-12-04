@@ -2,9 +2,19 @@
 <view class="start-container">
   <image class="start-bg" src="../../image/img-start-bg@3x.png"></image>
   <text class="start-logo">Uorders</text>
+  
+  <picker bindchange="setLanguage" value="{{languageIndex}}" range="{{languageType}}">
+     <view class="select-language select-language-text">
+      language : {{languageType[languageIndex]}}
+    </view>
+  </picker>
+
+    <!-- <text wx:if="{{isKorean}}" class="select-language-text">언어 선택 (한국어)</text>
+    <text wx:if="{{!isKorean}}" class="select-language-text">语言选择（中文）</text> -->
+
 
   <view bindtap="getUserSetting" class="start-btn">
-    <text class="start-btn-text">시작하기</text>
+    <text class="start-btn-text">{{startText}}</text>
   </view>
 </view>
 

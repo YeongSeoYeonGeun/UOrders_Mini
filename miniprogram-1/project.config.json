@@ -76,6 +76,12 @@
           "pathName": "pages/main/main",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/cafemenu/cafemenu",
+          "pathName": "pages/cafemenu/cafemenu",
+          "query": "cafeIndex=7",
+          "scene": null
         }
       ]
     }

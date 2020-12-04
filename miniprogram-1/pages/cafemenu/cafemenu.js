@@ -4,15 +4,16 @@ const app = getApp()
 Page({
   data: {
     cafeIndex : 0,
-    cafeName: '남산학사 cafe',
-    cafeLocation : '신공학관 1층', 
+    cafeName: '',
+    cafeLocation : '', 
     favorite : 0,
     menuList: [
       {
         menuIndex: 0,
-        menuName: '아메리카노',
-        menuPrice: '1,000원',
-        menuImage: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+        menuName: '',
+        menuPrice: '',
+        menuPriceText : '',
+        menuImage: ''
       }
     ]
   },
@@ -27,7 +28,7 @@ Page({
   /* 통신 */
   getCafeMenu : function(cafeIndex){
     wx.showLoading({
-      title: '불러오는 중..',
+      title: 'loading..',
     })
     var that = this
 
@@ -85,7 +86,7 @@ Page({
             })
           } else {
             wx.showToast({
-              title: '매장 즐겨찾기에 실패했습니다.'
+              title: 'fail to register favorite.'
             })
           }
         },

@@ -3,12 +3,18 @@ const app = getApp()
 
 Page({
   data: {
+    menuDetailText : '',
     cafeIndex : 0,
     menuIndex : 0,
-    menuName: '아메리카노',
-    menuPrice : 1500,
+    menuName: '',
+    menuPrice : 0,
+    menuPriceText : '',
+    selectSizeText : '',
+    addCartText : '',
+    wonText : '',
+    menuImage : '',
     count : 1,
-    totalPrice : 1500,
+    totalPrice : 0,
     temperature : '',
     takeType :'',
     sizeIndex: 0,
@@ -44,11 +50,18 @@ Page({
       success: function(res){
         if(res.statusCode == 200){
           console.log(res.data)
-          let data = res.data.data.menuInfo
+          let data = res.data.data
 
           that.setData({
+            menuDetailText : data.menuDetailText,
+            addCartText : data.addCartText,
+            wonText : data.wonText,
+            selectSizeText : data.selectSizeText,
+            menuPriceText : data.menuPriceText,
+            menuImage : data.menuImage,
             menuName : data.menuName,
             menuPrice : data.menuPrice,
+            totalPrice : data.menuPrice,
             selectTemperature :  data.selectTemperature,
             selectSize : data.selectSize
           })
@@ -157,7 +170,8 @@ Page({
     if(temperatureBool && this.data.temperature == '') temperatureBool = false
     if(this.data.takeType != '') takeTypeBool = true
 
-    if(temperatureBool && takeTypeBool){
+    if(temperatureBool && takeTypeBool
+      || !this.data.selectTemperature || !this.data.selectSize){
       this.addCart()
     } else {
       wx.showModal({

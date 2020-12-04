@@ -4,7 +4,7 @@
   <view class="menuDetail-toolbar"> 
     <image bindtap="clickBack" class="toolbar-btn" src="../../image/ic-back.png"></image>
     <view class="toolbar-title-container">
-      <text class="toolbar-title-text">메뉴 상세</text>
+      <text class="toolbar-title-text">{{menuDetailText}}</text>
     </view>
   </view>
 </view>
@@ -38,7 +38,7 @@
   </view>
 
   <view wx:if="{{selectSize}}" class="menu-size-container">
-    <text class="text-size11">사이즈 선택</text>
+    <text class="text-size11">{{selectSizeText}}</text>
     <picker bindchange="selectSize" value="{{sizeIndex}}" range="{{sizeType}}">
       <view class="menu-size-box">
         {{sizeType[sizeIndex]}}
@@ -62,8 +62,8 @@
   </view>
 
   <view class="menu-add-container" bindtap="clickAddCart">
-    <text class="menu-add-text text-size20">{{count}}개 담기</text>
-    <text class="menu-add-price-text text-size14">{{totalPrice}}원</text>
+    <text class="menu-add-text text-size20">{{count}}{{addCartText}}</text>
+    <text class="menu-add-price-text text-size14">{{totalPrice}}{{wonText}}</text>
   </view>
 </view>
 </view>

@@ -27,7 +27,7 @@
           <!--메뉴 이름과 가격-->
           <view class="menu-content">
             <view class='menu-name'> {{item.menuName}} </view>
-            <view class="menu-price"> {{item.menuPrice}} 원</view>
+            <view class="menu-price"> {{item.menuPriceText}}</view>
           </view>
           <!--메뉴 사진-->
           <view class="menu-image" style="background-image:url('item.menuImage');">

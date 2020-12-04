@@ -8,18 +8,18 @@
 <view class="main-container">
   <view class="main-top-container">
     <view class="intro-container">
-      <view class="userIntro-text"> {{userIntroFront}} {{userName}}{{userIntroBack}}</view>
-      <view class="intro-text"> {{intro}} </view>
+      <view class="userIntro-text"> {{greetingText}} </view>
+      <view class="intro-text"> {{mainText}} </view>
     </view>
 <!-- 
     <button wx:if="{{!hasLogin}}" open-type="getUserInfo" bindgetuserinfo="logIn" class="cu-btn bg-white text-xxl">{{userInfo.nickName}}</button> -->
 
     <view class="storeFilter-container">
-      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text text-white" bindtap='getNear'>  {{ nearStore }} </view>
-      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getNear'>  {{ nearStore }} </view>
+      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text text-white" bindtap='getNear'>  {{ nearestCafeText }} </view>
+      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getNear'>  {{ nearestCafeText }} </view>
       <image wx:if="{{listSelected}}" class="bar-icon" src="../../image/img-bar.png" ></image>
-      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text text-white" bindtap='getFavorite'>  {{ favoriteStore }} </view>
-      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getFavorite'>  {{ favoriteStore }} </view>
+      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text text-white" bindtap='getFavorite'>  {{ favoriteCafeText }} </view>
+      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getFavorite'>  {{ favoriteCafeText }} </view>
       <image wx:if="{{!listSelected}}" class="list-icon" src="../../image/ic-list.png" bindtap="showList"></image>
       <image wx:if="{{listSelected}}" class="map-icon" src="../../image/ic-map.png" bindtap="showMap"></image>
     </view>
@@ -50,7 +50,7 @@
       </view>
     </scroll-view>
     <view wx:else>
-      <view class="text-center text-black1">데이터가 없습니다.</view>
+      <view class="text-center text-black1">no data</view>
     </view>
   </block>
 

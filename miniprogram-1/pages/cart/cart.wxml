@@ -4,14 +4,14 @@
   <view class="cart-toolbar"> 
     <image bindtap= "back" class='back-btn' src='../../image/ic-back.png' ></image>
     <view class="toolbar-title-container">
-      <text class="toolbar-title-text">장바구니</text>
+      <text class="toolbar-title-text">{{cartText}}</text>
     </view>
   </view>
 </view>
 
 <view class='cart-list-container'>
   <view class="cart-empty" wx:if="{{cartList.length == 0}}">
-    장바구니가 비었습니다.
+    cart is empty
   </view>
 <scroll-view wx:if="{{cartList.length}}" scroll-y="{{modalName==null}}" 
   class="menu-list-scrollview page {{modalName!=null?'show':''}}" >
@@ -33,7 +33,7 @@
           </view>
 
           <view class='count-price-area'>
-            <text class='count-price-text'>{{item.menuCount}}개 {{item.menuOrderPrice}}원</text>
+            <text class='count-price-text'>{{item.menuPriceText}}</text>
           </view>
       </view>
       <view class="item-border"></view>
@@ -41,7 +41,7 @@
     </view>
 
 <view class='delete-all-area' bindtap="deleteAll">
-  <text class='delete-all-text'>모두 삭제</text>
+  <text class='delete-all-text'>{{initializeCartText}}</text>
 </view>
 
 <view class="item-border"></view>
@@ -49,6 +49,6 @@
 
 </view>
   <view wx:if="{{cartList.length}}" class='order-button-area' bindtap="checkSessionBeforeOrder">
-    <text class='price-order-text'>{{totalPrice}}원 결제하기</text>
+    <text class='price-order-text'>{{orderText}}</text>
   </view>
 </view>

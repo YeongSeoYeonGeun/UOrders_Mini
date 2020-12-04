@@ -3,22 +3,26 @@ const app = getApp()
 
 Page({
   data: {
+    cartText : '',
+    initializeCartText : '',
     cafeIndex : 0,
-    cafeName: '남산학사 cafe',
+    cafeName: '',
     cartIndex : 0,
     cartList: [
       {
         cartMenuIndex : 0,
         menuIndex: 0,
-        menuName: '아메리카노',
-        menuTemperature : 'ICED',
-        menuSize : 'Regular',
-        menuTakeType : 'HERE',
-        menuCount: '1',
-        menuOrderPrice: '1,000'
+        menuName: '',
+        menuTemperature : '',
+        menuSize : '',
+        menuTakeType : '',
+        menuCount: '',
+        menuOrderPrice: '',
+        menuPriceText : ''
       }
     ],
-    totalPrice : '4,000'
+    totalPrice : '',
+    orderText : ''
   },
   onLoad: function () {
     this.getCart()
@@ -26,7 +30,7 @@ Page({
   /* 통신 */
   getCart : function(){
     wx.showLoading({
-      title: '불러오는 중..',
+      title: 'loading..',
     })
     var that = this
 
@@ -44,11 +48,14 @@ Page({
           let data = res.data.data
 
           that.setData({
+            cartText : data.cartText,
+            initializeCartText : data.initializeCartText,
             cartIndex : data.cartIndex,
             cafeIndex : data.cafeIndex,
             cafeName : data.cafeName,
             cartList : data.cartMenuInfo,
-            totalPrice : data.totalPrice
+            totalPrice : data.totalPrice,
+            orderText : data.payText
           })
         }
         wx.hideLoading();
@@ -76,7 +83,7 @@ Page({
     var url = api.url + 'orders/pay';
 
     wx.showLoading({
-      title: '불러오는 중..',
+      title: 'loading..',
     })
 
     wx.request({

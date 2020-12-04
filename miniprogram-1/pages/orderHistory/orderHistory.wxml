@@ -4,7 +4,7 @@
   <view class="orderHistory-toolbar"> 
     <image bindtap="clickBack" class="toolbar-btn" src="../../image/ic-back.png"></image>
     <view class="toolbar-title-container">
-      <text class="toolbar-title-text">주문 내역 확인</text>
+      <text class="toolbar-title-text">{{readOrderText}}</text>
     </view>
   </view>
   </view>
@@ -18,19 +18,19 @@
         <view wx:for="{{orderHistoryList}}" wx:key="index" data-item="{{item}}">
           <view class="orderHistory-item">
             <view class="orderHistroy-cafeName">{{item.cafeName}}</view>
-            <view class="orderHistroy-content">{{item.menuInfo[0].menuName}} <text wx:if="{{item.menuInfo.length > 1}}" > 외 {{item.menuInfo.length - 1}}개</text>  </view>
-            <view class="orderHistory-time">주문일시 : {{item.orderDate}}</view>
+            <view class="orderHistroy-content">{{item.menuInfo[0].menuName}} <text wx:if="{{item.menuInfo.length > 1}}" > {{andText}} {{item.menuInfo.length - 1}}{{numberText}}</text>  </view>
+            <view class="orderHistory-time">{{orderDateText}} : {{item.orderDate}}</view>
 
             <view class="orderItem-box">
             <view wx:for="{{item.menuInfo}}" wx:key="index2" data-item="{{item}}">
               <view class="orderItem-container">
-                <view class="orderItem-name">{{item.menuName}} {{item.orderCount}}개</view>
-                <view class="orderItem-price">{{item.orderPrice}}원</view>
+                <view class="orderItem-name">{{item.menuName}} {{item.orderCount}}{{numberText}}</view>
+                <view class="orderItem-price">{{item.orderPrice}}{{wonText}}</view>
               </view>
             </view>
 
             <view class="orderItem-bottom-line"></view>
-            <text class="orderHistory-totalPrice">총 결제금액 {{item.totalPrice}}원</text>
+            <text class="orderHistory-totalPrice">{{totalPrice}} {{item.totalPrice}}{{wonText}}</text>
           
           </view>
           <view class="orderHistory-bottom"></view>
@@ -40,7 +40,7 @@
         </view>
       </scroll-view>
     <view wx:else>
-      <text class="text-center text-black1">데이터가 없습니다.</text>
+      <text class="text-center text-black1">no data</text>
     </view>
   </block>
 

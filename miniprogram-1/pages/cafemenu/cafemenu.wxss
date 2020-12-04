@@ -18,7 +18,7 @@
 }
 .cafeName-text {
   position: absolute;
-  font-size: 24px;
+  font-size: 23px;
   font-weight : 500;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -82,7 +82,6 @@
 }
 
 .menu-image{
-  background-color: #e49b14;
   border-radius: 70%;
   width: 52px;
   height: 52px;

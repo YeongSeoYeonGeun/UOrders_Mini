@@ -181,7 +181,8 @@
   line-height: 42px;
   color: white;
   position: absolute;
-  left: 39%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .menu-add-price-text{

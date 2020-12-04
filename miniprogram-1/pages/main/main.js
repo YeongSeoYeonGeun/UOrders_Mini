@@ -5,11 +5,10 @@ Page({
   data: {
     userInfo: {},
     userName : '',
-    userIntroFront: '안녕하세요 ',
-    userIntroBack: '님!',
-    intro : '오늘은 어떤 음료를 주문하시겠어요?',
-    nearStore : '가까운 매장',
-    favoriteStore : '즐겨찾는 매장',
+    greetingText : '',
+    mainText : '',
+    nearestCafeText : '',
+    favoriteCafeText : '',
     nearCafeSelected : true,
     listSelected : true,
     cafeList : []
@@ -26,7 +25,6 @@ Page({
     })
   },
   onLoad: function () {
-
     this.setData({
       listSelected : true
     })
@@ -46,7 +44,7 @@ Page({
   },
   getCafeList : function(){
     wx.showLoading({
-      title: '불러오는 중..',
+      title: 'loading..',
     })
     var that = this
 
@@ -64,6 +62,10 @@ Page({
 
           let data = res.data.data
           that.setData({
+            greetingText : data.greetingText,
+            mainText : data.mainText,
+            nearestCafeText : data.nearestCafeText,
+            favoriteCafeText : data.favoriteCafeText,
             cafeList : data.cafeInfo
           })
         } else {
@@ -83,7 +85,7 @@ Page({
   },
   getFavoriteCafeList : function(){
     wx.showLoading({
-      title: '불러오는 중..',
+      title: 'loading..',
     })
     var that = this
 

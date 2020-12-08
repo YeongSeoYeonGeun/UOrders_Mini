@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data : {
     languageIndex: 0,
-    languageType: ['한국어', '中文',],
+    languageType: ['한국어', '中文', 'English'],
     startText : ''
   },
   onLoad: function () {
@@ -155,11 +155,17 @@ Page({
       this.setData({
         startText : '시작하기'
       })
-    } else {
+    } else if(this.data.languageIndex == 1){
       lang = 'zh'
       wx.setStorageSync('lang', 'zh')
       this.setData({
         startText : '入门'
+      })
+    } else if(this.data.languageIndex == 2){
+      lang = 'en'
+      wx.setStorageSync('lang', 'en')
+      this.setData({
+        startText : 'Start'
       })
     }
 

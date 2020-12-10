@@ -16,7 +16,8 @@
 .my-page{
   width: 48px;
   height: 48px;
-  margin-left: auto;
+  /* margin-left: auto; */
+  margin-left : 0px;
   margin-right: 4px;
 }
 

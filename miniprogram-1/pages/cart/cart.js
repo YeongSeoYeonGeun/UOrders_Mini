@@ -22,7 +22,13 @@ Page({
       }
     ],
     totalPrice : '',
-    orderText : ''
+    orderText : '',
+
+    cafeName : '',
+    orderIndex : 0,
+    orderCompleteText : '',
+    acceptText : '',
+    returnHomeText : ''
   },
   onLoad: function () {
     this.getCart()
@@ -113,7 +119,11 @@ Page({
               console.log('결제 실패ㅜ')
               wx.hideLoading();
               wx.navigateTo({
-                url: '../orderComplete/orderComplete',
+                url: '../orderComplete/orderComplete?cafeName=' + that.data.cafeName 
+                + '&orderIndex=' + that.data.orderIndex 
+                + '&orderCompleteText=' + that.data.orderCompleteText
+                + '&acceptText=' + that.data.acceptText
+                + '&returnHomeText=' + that.data.returnHomeText
               })
             }
           })
@@ -141,6 +151,7 @@ Page({
     let orderDateTime = orderDate + ' ' + orderTime;
     console.log(orderDateTime)
 
+    var that = this
     var url = api.url + 'orders';
 
     wx.request({
@@ -157,7 +168,16 @@ Page({
   
       success: function(res){
         if(res.statusCode == 200){
-          console.log(res)
+
+          var data = res.data.data
+          console.log(data)
+          that.setData({
+            cafeName : data.cafeName,
+            orderIndex : data.orderIndex,
+            orderCompleteText : data.orderCompleteText,
+            acceptText : data.acceptText,
+            returnHomeText : data.returnHomeText
+          })
         }
       },
       fail: function(err){

@@ -9,7 +9,7 @@ Page({
     menuName: '',
     menuPrice : 0,
     menuPriceText : '',
-    selectSizeText : '',
+    sizeSelectText : '',
     addCartText : '',
     wonText : '',
     menuImage : '',
@@ -56,7 +56,7 @@ Page({
             menuDetailText : data.menuDetailText,
             addCartText : data.addCartText,
             wonText : data.wonText,
-            selectSizeText : data.selectSizeText,
+            sizeSelectText : data.sizeSelectText,
             menuPriceText : data.menuPriceText,
             menuImage : data.menuImage,
             menuName : data.menuName,
@@ -78,6 +78,20 @@ Page({
 
     console.log('cafeIndex ' + this.data.cafeIndex);
 
+    var size = ''
+    if(this.data.selectSize){
+      size = this.data.sizeType[this.data.sizeIndex];
+    } else {
+      size = 'NONE'
+    }
+
+    var temp = ''
+    if(this.data.selectTemperature){
+      temp = this.data.temperature
+    } else {
+      temp = 'NONE'
+    }
+
     const that = this
     var url = api.url + 'users/cartMenu';
     wx.request({
@@ -92,8 +106,8 @@ Page({
         'menuIndex' : this.data.menuIndex,
         'menuName': this.data.menuName,
         'menuCount': this.data.count ,
-        'menuTemperature': this.data.temperature ,
-        'menuSize': this.data.sizeType[this.data.sizeIndex],
+        'menuTemperature': temp ,
+        'menuSize': size,
         'menuTakeType': this.data.takeType,
         'menuTotalPrice' : this.data.totalPrice
       },

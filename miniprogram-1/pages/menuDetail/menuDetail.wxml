@@ -12,9 +12,9 @@
   <view class="menu-info-container">
     <view class="menu-info-text-container">
       <view class="menu-name-text text-black1 text-size18">{{menuName}}</view>
-      <view class="menu-price-text text-black1 text-size14">{{menuPrice}}원</view>
+      <view class="menu-price-text text-black1 text-size14">{{menuPrice}}{{wonText}}</view>
     </view>
-    <image class = "menu-info-img" src="../../image/img-default.png"></image>
+    <image class = "menu-info-img" src="{{menuImage}}"></image>
   </view>
   <view class="menu-count">
     <image bindtap="reduce" class="menu-count-down" src="../../image/ic-count-down@3x.png"></image>
@@ -38,7 +38,7 @@
   </view>
 
   <view wx:if="{{selectSize}}" class="menu-size-container">
-    <text class="text-size11">{{selectSizeText}}</text>
+    <text class="text-size11">{{sizeSelectText}}</text>
     <picker bindchange="selectSize" value="{{sizeIndex}}" range="{{sizeType}}">
       <view class="menu-size-box">
         {{sizeType[sizeIndex]}}

@@ -27,12 +27,12 @@
           <!--메뉴 이름과 가격-->
           <view class="menu-content">
             <view class='menu-name'> {{item.menuName}} </view>
-            <view class="menu-price"> {{item.menuPriceText}}</view>
+            <view class="menu-price"> {{item.menuPrice}}{{wonText}}</view>
           </view>
           <!--메뉴 사진-->
-          <view class="menu-image" style="background-image:url('item.menuImage');">
+          <image class="menu-image" src="{{item.menuImage}}">
             <!-- <text wx:if="{{!item.image}}" class="cuIcon-picfill lg text-gray"></text> -->
-          </view>
+          </image>
         </view>
         <view class="border"></view>
       </view>

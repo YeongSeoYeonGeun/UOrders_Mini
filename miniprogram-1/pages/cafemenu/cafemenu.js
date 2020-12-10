@@ -7,6 +7,7 @@ Page({
     cafeName: '',
     cafeLocation : '', 
     favorite : 0,
+    wonText : '',
     menuList: [
       {
         menuIndex: 0,
@@ -48,6 +49,7 @@ Page({
             cafeName : data.cafeName,
             cafeLocation : data.cafeLocation,
             favorite : data.isFavorite,
+            wonText : data.wonText,
             menuList : data.menuInfo
           })
         } else {

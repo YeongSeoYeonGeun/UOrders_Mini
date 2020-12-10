@@ -16,10 +16,15 @@ Page({
         languageIndex : 0,
         startText : '시작하기'
       })
-    } else {
+    } else if(lang == 'zh'){
       this.setData({
         languageIndex : 1,
         startText : '入门'
+      })
+    } else if(lang == 'en'){
+      this.setData({
+        languageIndex : 2,
+        startText : 'Start'
       })
     }
 
@@ -32,6 +37,7 @@ Page({
       }
     })
 
+
      // userIndex 받아오기
      wx.getStorage({
        key: 'userIndex',
@@ -42,6 +48,7 @@ Page({
          app.globalData.userIndex = res.data
        },
        fail: function(err){
+         this.login()
          console.log('get userIndex error : ' + err.errMsg)
        }
      })
@@ -49,6 +56,21 @@ Page({
   },
   loginSuccess : function(){
     const that = this
+
+    // wx.showModal({
+    //   title: 'Apply',
+    //   content: 'Can we user your name and Id?',
+    //   success (res) {
+    //     if (res.confirm) {
+    //       console.log('"OK" is tapped')
+
+    //       that.login()
+    //     } else if (res.cancel) {
+    //       console.log('"Cancel" is tapped')
+    //       // Todo: 앱 종료
+    //     }
+    //   }
+    // })
 
     if(app.globalData.userInfo != null){
       wx.reLaunch({
@@ -61,20 +83,18 @@ Page({
         success (res) {
           if (res.confirm) {
             console.log('"OK" is tapped')
-            
-            that.login();
 
-            // wx.reLaunch({
-            //   url: '../main/main',
-            // })
+            wx.reLaunch({
+              url: '../main/main',
+            })
           } else if (res.cancel) {
             console.log('"Cancel" is tapped')
             // Todo: 앱 종료
           }
         }
       })
-      
     }
+
   },
   login : function(){
     var that = this;
@@ -100,7 +120,9 @@ Page({
                 console.log(res.data)
                 app.globalData.userIndex = res.data.data.userIndex
                  wx.setStorageSync('userIndex', res.data.data.userIndex)
-                that.loginSuccess();
+                wx.reLaunch({
+                  url: '../main/main',
+                })
               } else {
                 console.log(res)
               }
@@ -123,24 +145,27 @@ Page({
   },
   getUserSetting : function() {
     var that = this;
-    wx.getSetting({
-      success(res){
-        console.log(res.authSetting);
+    
+    this.loginSuccess()
 
-        if(!res.authSetting){
-          wx.getUserInfo({
-            lang: 'en',
-            success(res) { 
-              console.log(res.userInfo);
-              app.globalData.userInfo = res.userInfo
-            }
-          })
-        } else {
-          that.login();
-        }
+    // wx.getSetting({
+    //   success(res){
+    //     console.log(res.authSetting);
+
+    //     if(!res.authSetting){
+    //       wx.getUserInfo({
+    //         lang: 'en',
+    //         success(res) { 
+    //           console.log(res.userInfo);
+    //           app.globalData.userInfo = res.userInfo
+    //         }
+    //       })
+    //     } else {
+    //       that.login();
+    //     }
         
-      }
-    })
+    //   }
+    // })
   },
   setLanguage : function(e){
     this.setData({

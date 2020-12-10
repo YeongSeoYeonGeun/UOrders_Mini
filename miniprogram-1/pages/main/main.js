@@ -1,116 +1,183 @@
+const api = require('../../utils/api.js')
 const app = getApp()
-
-const normalCallout = {
-  id: 1,
-  latitude: 37.33295,
-  longitude: 127.00005,
-  iconPath: '/image/location.png',
-  callout: {
-    content: '文本内容',
-    color: '#ff0000',
-    fontSize: 12,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: '#000000',
-    bgColor: '#fff',
-    padding: 5,
-    display: 'ALWAYS',
-    textAlign: 'center'
-  },
-  // label: {
-  //   content: 'label 文本',
-  //   fontSize: 24,
-  //   textAlign: 'center',
-  //   borderWidth: 1,
-  //   borderRadius: 5,
-  //   bgColor: '#fff',
-  //   padding: 5
-  // }
-}
-
 
 Page({
   data: {
-    userIntro: '안녕하세요 시연님!',
-    intro : '오늘은 어떤 음료를 주문하시겠어요?',
-    nearStore : '가까운 매장',
-    favoriteStore : '즐겨찾는 매장',
+    userInfo: {},
+    userName : '',
+    greetingText : '',
+    mainText : '',
+    nearestCafeText : '',
+    favoriteCafeText : '',
     nearCafeSelected : true,
     listSelected : true,
-    cafeList : [
-      {
-        index: 0,
-        name: '남산학사 cafe',
-        location: '신공학관 1층',
-        distance: '53m',
-        image: 'https://media-cdn.tripadvisor.com/media/photo-s/19/15/a7/68/gazzi-cafe.jpg'
-      },
-      {
-        index: 1,
-        name: '그루터기 cafe',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg'
-      },
-      {
-        index: 2,
-        name: '그루터기 cafe2',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 3,
-        name: '그루터기 cafe3',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'https://i.pinimg.com/originals/e5/c3/6a/e5c36ae8da0e4a92c3318e12f4a2db34.jpg'
-      },
-      {
-        index: 4,
-        name: '그루터기 cafe',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
-      },
-      {
-        index: 5,
-        name: '그루터기 cafe',
-        location: '사회과학관 2층 입구',
-        distance: '102m',
-        image: 'http://www.designtwoply.com/wp-content/uploads/2018/01/designtwoply0000-1.jpg'
+    cafeList : []
+  },
+  onLaunch: function () {
+
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let custom = wx.getMenuButtonBoundingClientRect();
+        this.globalData.Custom = custom;
+        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
-    ],
-    latitude: 37.558183,
-    longitude: 127.000132,
-    markers: [],
-    customCalloutMarkerIds: [],
-    num: 1
+    })
   },
   onLoad: function () {
-    console.log('main load')
     this.setData({
       listSelected : true
     })
-    // 통신 필요 (사용자 이름)
+
+    var that = this
+    // userName 가져오기
+    wx.getStorage({
+      key: 'userNickName',
+      success (res) {
+        that.setData({
+          userName : res.data
+        })
+      }
+    })
+
+    this.getCafeList();
   },
-  bindCafeTap: function() {
-    // wx.navigateTo({
-    //   url: '../logs/logs'
-    // })
-    console.log("hiroo")
+  getCafeList : function(){
+    wx.showLoading({
+      title: 'loading..',
+    })
+    var that = this
+
+    var url = api.url + 'home';
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      success: function(res){
+        console.log(res.data);
+        if(res.statusCode == 200){
+
+          let data = res.data.data
+          that.setData({
+            greetingText : data.greetingText,
+            mainText : data.mainText,
+            nearestCafeText : data.nearestCafeText,
+            favoriteCafeText : data.favoriteCafeText,
+            cafeList : data.cafeInfo
+          })
+        } else {
+          that.setData({
+            cafeList : []
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function(err){
+        console.log('getCafeList error : ' + err.errMsg)
+        wx.hideLoading();
+      }
+      
+    })
+  },
+  getFavoriteCafeList : function(){
+    wx.showLoading({
+      title: 'loading..',
+    })
+    var that = this
+
+    var url = api.url + 'users/favorite';
+    wx.request({
+      method : 'GET',
+      url: url,
+      header: { 
+        'content-type' : 'application/json',
+        'userIndex' : app.globalData.userIndex
+      },
+      success: function(res){
+        if(res.statusCode == 200){
+          console.log(res.data.data.cafeInfo)
+          that.setData({
+            cafeList : res.data.data
+          })
+        } else {
+          that.setData({
+            cafeList : []
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function(err){
+        console.log('getCafeList error : ' + err.errMsg)
+        wx.hideLoading();
+      }
+      
+    })
+  },
+  setUserInfo(userInfo = ""){
+    var data = {
+      hasLogin : false,
+      userInfo : {
+        nickName : '로그인이 필요합니다.'
+      }
+    };
+
+    if(userInfo){
+      data.hasLogin = true;
+      data.userInfo = userInfo;
+      wx.setStorageSync('userInfo', userInfo)
+    } else {
+      data.hasLogin = false;
+      data.userInfo = data.userInfo;
+      wx.removeStorageSync('userInfo')
+    }
+    this.setData(data);
+  },
+  bindCafeTap: function(e) {
+    let item = e.currentTarget.dataset.item;
+
+    wx.navigateTo({
+      url: '../cafemenu/cafemenu?cafeIndex=' + item.cafeIndex,
+    })
+  },
+  logIn(e) {
+    if (e.detail.userInfo == undefined) {
+      console.log('유저정보 실패!',"ERROR");
+      return;
+    }
+    this.setUserInfo(e.detail.userInfo);
+    console.log("로그인 성공!")    
+  },
+  logOut(e) {
+    let that = this;
+    wx.showModal({
+      title: 'LogOut',
+      confirmColor: '#b4282d',
+      content: '로그아웃 하시겠습니까？',
+      cancelText: "취소",
+      confirmText: "확인",
+      success: function (res) {
+        if (res.confirm) {
+          that.setUserInfo("");
+        }
+      }
+    })
   },
   getNear : function() {
-    console.log('getNear 클릭')
     this.setData({
       nearCafeSelected: true
     })
+    this.getCafeList();
   },
   getFavorite : function() {
-    console.log('getFavorite 클릭')
     this.setData({
       nearCafeSelected: false
     })
+    this.getFavoriteCafeList();
   },
   showMap : function() {
     console.log('showMap 클릭')
@@ -122,6 +189,11 @@ Page({
     console.log('showList 클릭')
     this.setData({
       listSelected: true
+    })
+  },
+  orderHistory : function(){
+    wx.navigateTo({
+      url: '../orderHistory/orderHistory',
     })
   }
 

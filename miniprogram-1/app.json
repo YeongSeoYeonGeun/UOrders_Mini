@@ -2,16 +2,24 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
+    "pages/start/start",
     "pages/main/main",
     "pages/cafemenu/cafemenu",
-    "pages/cart/cart"
+    "pages/cart/cart",
+    "pages/menuDetail/menuDetail",
+    "pages/orderComplete/orderComplete",
+    "pages/orderHistory/orderHistory"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#0B463C",
     "navigationBarTitleText": "UOrders",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "cu-custom":"/colorui/components/cu-custom"
+  }
 }

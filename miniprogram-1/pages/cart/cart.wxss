@@ -1,0 +1,154 @@
+/* cart.wxss */
+
+.temp-white{
+  background-color: white;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-top{
+  background-color: white;
+}
+
+.cart-toolbar{
+  position: relative;
+}
+
+.backbtn-bar{
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+}
+
+.back-btn-box {
+  height: 48px;
+  width: 48px;
+  align-content: left;
+}
+
+.back-btn{
+  height: 48px;
+  width: 48px;
+}
+
+.cart-text{
+  font-size: 16px;
+  color: #333333;
+  margin-left: 126px;
+  line-height: 48px;
+}
+
+.border{
+  height: 1px;
+  background-color: #dddddd;
+}
+
+.cart-list-container{
+  height: auto;
+  background-color: white;
+}
+
+.cafe-name-box{
+  height: 60.5px;
+  overflow: auto;
+}
+
+.cafe-name-text{
+  height: 19px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0b463c;
+  margin-left: 20px;
+  margin-top: 33.5px;
+}
+
+.bold-border{
+  height: 2px;
+  background-color: #eeeeee;
+}
+
+.cart-item-box{
+  /* height: 101px; */
+}
+
+.name-cancel-area{
+  padding-top: 10px;
+}
+
+.name-text{
+  font-size: 20px;
+  color: #333333;
+  font-weight: normal;
+  margin-left: 20px;
+}
+
+.cancel-btn{
+  width: 24px;
+  height: 24px;
+  float: right;
+  margin-right: 13px;
+}
+
+info-area{
+  height: 19px;
+}
+
+.info-text{
+  font-size: 14px;
+  font-weight: 350;
+  color: #888888;
+  margin-left: 20px; 
+}
+
+.count-price-area{
+  height: 38px;
+}
+
+.count-price-text{
+  font-size: 16px;
+  font-weight: normal;
+  color: #444444;
+  float: right;
+  margin-right: 20px;
+}
+
+.item-border{
+  height: 1px;
+  background-color: #eeeeee;
+}
+
+.delete-all-area{
+  height: 44px;
+  text-align: center;
+}
+
+.delete-all-text{
+  font-size: 14px;
+  font-weight: normal;
+  color: #888888;
+  line-height: 44px;
+}
+
+.order-button-area {
+  height: 52px;
+  background-color: #0b463c;
+  border-radius: 4px;
+  margin: auto 8px 8px 8px;
+  position: relative;
+}
+
+.price-order-text{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  font-size: 20px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.cart-empty{
+  text-align: center;
+  margin-top: 100px;
+}

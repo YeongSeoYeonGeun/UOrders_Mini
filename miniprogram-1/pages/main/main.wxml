@@ -1,17 +1,25 @@
 <!--main.wxml-->
+<view class="toolbar main-top">
+  <view class="main-toolbar"> 
+    <image class="main-logo toolbar-btn" src="../../image/ic-logo@3x.png"></image>
+    <image bindtap="orderHistory" class="my-page toolbar-btn" src="../../image/ic-mypage.png"></image>
+  </view>
+</view>
 <view class="main-container">
   <view class="main-top-container">
     <view class="intro-container">
-      <view class="userIntro-text"> {{userIntro}} </view>
-      <view class="intro-text"> {{intro}} </view>
+      <view class="userIntro-text"> {{greetingText}} </view>
+      <view class="intro-text"> {{mainText}} </view>
     </view>
+<!-- 
+    <button wx:if="{{!hasLogin}}" open-type="getUserInfo" bindgetuserinfo="logIn" class="cu-btn bg-white text-xxl">{{userInfo.nickName}}</button> -->
 
     <view class="storeFilter-container">
-      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text" bindtap='getNear'>  {{ nearStore }} </view>
-      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getNear'>  {{ nearStore }} </view>
+      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text text-white" bindtap='getNear'>  {{ nearestCafeText }} </view>
+      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getNear'>  {{ nearestCafeText }} </view>
       <image wx:if="{{listSelected}}" class="bar-icon" src="../../image/img-bar.png" ></image>
-      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text" bindtap='getFavorite'>  {{ favoriteStore }} </view>
-      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getFavorite'>  {{ favoriteStore }} </view>
+      <view wx:if="{{!nearCafeSelected && listSelected}}" class="storeFilter-text text-white" bindtap='getFavorite'>  {{ favoriteCafeText }} </view>
+      <view wx:if="{{nearCafeSelected && listSelected}}" class="storeFilter-text text-gray1" bindtap='getFavorite'>  {{ favoriteCafeText }} </view>
       <image wx:if="{{!listSelected}}" class="list-icon" src="../../image/ic-list.png" bindtap="showList"></image>
       <image wx:if="{{listSelected}}" class="map-icon" src="../../image/ic-map.png" bindtap="showMap"></image>
     </view>
@@ -23,14 +31,14 @@
       <view class="cu-list menu-avatar">
         <view wx:for="{{cafeList}}" wx:key="index" bindtap="bindCafeTap" data-item="{{item}}">
           <view class="cafe-item">
-            <image class="cafe-image" src="{{item.image}}"></image>
-              <text wx:if="{{!item.image}}" class="cuIcon-picfill lg text-gray"></text>
+            <image class="cafe-image" src="{{item.cafeImage}}"></image>
+            <!-- <text wx:if="{{!item.cafeImage}}" class="cuIcon-picfill lg text-gray"></text> -->
             <view class="cafe-content">
               <view>
-                <text class="text-black1 text-size16 cafe-name-text">{{item.name}}</text>
+                <text class="text-black1 text-size16 cafe-name-text">{{item.cafeName}}</text>
               </view>
               <view class="text-gray text-sm flex">
-                <text class="text-black3 text-size11 cafe-location-text"> {{item.location}}</text>
+                <text class="text-black3 text-size11 cafe-location-text"> {{item.cafeLocation}}</text>
               </view>
               <view class="cafe-distance">
                 <text class="cafe-distance-text text-size12">{{item.distance}}</text>
@@ -42,16 +50,12 @@
       </view>
     </scroll-view>
     <view wx:else>
-      <text class="text-center text-black1">데이터가 없습니다.</text>
+      <view class="text-center text-black1">no data</view>
     </view>
   </block>
 
 <!-- 카페 map -->
   <view class="map-container" wx:if="{{!listSelected}}">
-    <map
-      id="myMap"
-      class="map"
-    >
-    </map>
+    <image class="map" src="../../image/img-map@2x.png"></image>
   </view>
 </view>

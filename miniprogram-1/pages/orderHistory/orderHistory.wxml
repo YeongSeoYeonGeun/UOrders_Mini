@@ -1,0 +1,48 @@
+<view class="height-container">
+  <!-- tool bar -->
+  <view class="toolbar orderHistory-top">
+  <view class="orderHistory-toolbar"> 
+    <image bindtap="clickBack" class="toolbar-btn" src="../../image/ic-back.png"></image>
+    <view class="toolbar-title-container">
+      <text class="toolbar-title-text">{{readOrderText}}</text>
+    </view>
+  </view>
+  </view>
+  <view class="toolbar-border"></view>
+
+
+ <!-- 주문 내역 리스트 scroll-view -->
+ <block>
+    <scroll-view wx:if="{{orderHistoryList.length}}" scroll-y="{{modalName==null}}" class="orderHistory-scroll-page page {{modalName!=null?'show':''}}">
+      <view class="cu-list menu-avatar">
+        <view wx:for="{{orderHistoryList}}" wx:key="index" data-item="{{item}}">
+          <view class="orderHistory-item">
+            <view class="orderHistroy-cafeName">{{item.cafeName}}</view>
+            <view class="orderHistroy-content">{{item.menuInfo[0].menuName}} <text wx:if="{{item.menuInfo.length > 1}}" > {{andText}} {{item.menuInfo.length - 1}}{{numberText}}</text>  </view>
+            <view class="orderHistory-time">{{orderDateText}} : {{item.orderDate}}</view>
+
+            <view class="orderItem-box">
+            <view wx:for="{{item.menuInfo}}" wx:key="index2" data-item="{{item}}">
+              <view class="orderItem-container">
+                <view class="orderItem-name">{{item.menuName}} {{item.orderCount}}{{numberText}}</view>
+                <view class="orderItem-price">{{item.orderPrice}}{{wonText}}</view>
+              </view>
+            </view>
+
+            <view class="orderItem-bottom-line"></view>
+            <text class="orderHistory-totalPrice">{{totalPrice}} {{item.totalPrice}}{{wonText}}</text>
+          
+          </view>
+          <view class="orderHistory-bottom"></view>
+            <view class="orderHistory-bottom-space"></view>
+        </view>
+        </view>
+        </view>
+      </scroll-view>
+    <view wx:else>
+      <text class="text-center text-black1">no data</text>
+    </view>
+  </block>
+
+
+</view>

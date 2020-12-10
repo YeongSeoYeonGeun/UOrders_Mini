@@ -1,0 +1,32 @@
+<view class="temp-white">
+  <view class="toolbar orderComplete-top">
+  <view class="orderComplete-toolbar"> 
+    <image class='cancle-button' src='../../image/ic-toolbar-cancel.png' ></image>
+    <view class="toolbar-title-container">
+      <text class="toolbar-title-text">{{orderCompleteText}}</text>
+    </view>
+  </view>
+</view>
+<view class="border"></view>
+
+<view class='order-complete-bottom-container'>
+  <view class='order-complete-text-box'>
+    <view class='order-complete-text'>{{orderCompleteText}}!</view>
+  </view>
+
+<view class='order-accept-box'>
+<view class='order-accept-text'>{{acceptText}}</view>
+</view>
+
+<view class='receipt-area'>
+  <image class='receipt-box' src='../../image/img-receipt.png' style='z-index : 1;'></image>
+  <view class='cafe-name-text' style='z-index : 2;' >{{cafeName}}</view>
+  <view class="no-text">No.</view>
+  <view class='number-text' style='z-index : 2;' >{{orderNumber}}</view>
+</view>
+
+<footer class='go-home-box'>
+<view bindtap='gohome' class='go-home-text'>{{returnHomeText}}</view>
+</footer>
+</view>
+</view>

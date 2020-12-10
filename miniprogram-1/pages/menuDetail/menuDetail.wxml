@@ -1,0 +1,69 @@
+<!--menuDetail.wxml-->
+<view class="height-container">
+<view class="toolbar menuDetail-top">
+  <view class="menuDetail-toolbar"> 
+    <image bindtap="clickBack" class="toolbar-btn" src="../../image/ic-back.png"></image>
+    <view class="toolbar-title-container">
+      <text class="toolbar-title-text">{{menuDetailText}}</text>
+    </view>
+  </view>
+</view>
+<view class="menuDetail-container">
+  <view class="menu-info-container">
+    <view class="menu-info-text-container">
+      <view class="menu-name-text text-black1 text-size18">{{menuName}}</view>
+      <view class="menu-price-text text-black1 text-size14">{{menuPrice}}{{wonText}}</view>
+    </view>
+    <image class = "menu-info-img" src="{{menuImage}}"></image>
+  </view>
+  <view class="menu-count">
+    <image bindtap="reduce" class="menu-count-down" src="../../image/ic-count-down@3x.png"></image>
+    <text class="menu-count-text">{{count}}</text>
+    <image bindtap="add" class="menu-count-up" src="../../image/ic-count-up@3x.png"></image>
+  </view>
+  <!-- Hot or Iced -->
+  <view wx:if="{{selectTemperature}}" class="menu-temperature-container">
+    <view wx:if="{{temperature == 'HOT'}}" class="menu-temparature-hot-selected">
+      <text class="menu-temparature-text text-white text-size16">HOT</text>
+    </view>
+    <view wx:if="{{temperature != 'HOT'}}" bindtap="clickHot"  class="menu-temparature-hot-unselected">
+      <text class="menu-temparature-text color-hot text-size16">HOT</text>
+    </view>
+    <view wx:if="{{temperature == 'ICED'}}" class="menu-temparature-iced-selected">
+      <text class="menu-temparature-text text-white text-size16">ICED</text>
+    </view>
+    <view wx:if="{{temperature != 'ICED'}}" bindtap="clickIced" class="menu-temparature-iced-unselected">
+      <text class="menu-temparature-text color-iced text-size16">ICED</text>
+    </view>
+  </view>
+
+  <view wx:if="{{selectSize}}" class="menu-size-container">
+    <text class="text-size11">{{sizeSelectText}}</text>
+    <picker bindchange="selectSize" value="{{sizeIndex}}" range="{{sizeType}}">
+      <view class="menu-size-box">
+        {{sizeType[sizeIndex]}}
+        <image class="menu-size-down-arrow" src="../../image/ic-arrow-down-filled.png"></image>
+      </view>
+    </picker>
+  </view>
+  <view class="menu-takeType-container">
+    <view wx:if="{{takeType == 'HERE'}}"  class="menu-takeType-here-selected">
+      <text class="menu-takeType-text text-white text-size16">HERE</text>
+    </view>
+    <view wx:if="{{takeType != 'HERE'}}" bindtap="clickHere"  class="menu-takeType-here-unselected">
+      <text class="menu-takeType-text text-black1 text-size16">HERE</text>
+    </view>
+    <view wx:if="{{takeType == 'TOGO'}}" class="menu-takeType-togo-selected">
+      <text class="menu-takeType-text text-white text-size16">TO GO</text>
+    </view>
+    <view wx:if="{{takeType != 'TOGO'}}" bindtap="clickTogo"  class="menu-takeType-togo-unselected">
+      <text class="menu-takeType-text text-black1 text-size16">TO GO</text>
+    </view>
+  </view>
+
+  <view class="menu-add-container" bindtap="clickAddCart">
+    <text class="menu-add-text text-size20">{{count}}{{addCartText}}</text>
+    <text class="menu-add-price-text text-size14">{{totalPrice}}{{wonText}}</text>
+  </view>
+</view>
+</view>

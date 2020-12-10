@@ -1,0 +1,72 @@
+/* pages/orderHistory/orderHistory.wxss */
+
+.orderHistory-top{
+  background-color: white;
+}
+
+.orderHistory-toolbar{
+  position: relative;
+}
+
+.orderHistory-scroll-page{
+  height: calc(100vh - 68px);
+}
+
+/* orderHistroy Items */
+.orderHistory-item{
+  background-color: white;
+  padding: 20px 24px 0px 24px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.orderHistroy-cafeName{
+  color: #0B463C;
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.orderHistory-content{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.orderHistory-time{
+  margin-top: 4px;
+  font-size: 13px;
+  color: #999999;
+}
+
+.orderItem-box{
+  margin-top: 28px;
+}
+
+.orderItem-container{
+  display: flex;
+  flex-direction: row;
+  color: #333333;
+  font-size: 15px;
+  margin-bottom: 13px;
+}
+
+.orderItem-price{
+  margin-left: auto;
+}
+
+.orderItem-bottom-line{
+  width: 100%;
+  height: 1px;
+  background-color: #999999;
+  margin-top: 20px;
+}
+
+.orderHistory-totalPrice{
+  float: right;
+  font-size: 18px;
+  color: #333333;
+  margin-top: 14px;
+  padding-bottom: 36px
+}

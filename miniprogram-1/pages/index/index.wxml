@@ -18,33 +18,35 @@
   </view>
 
  <!-- 카페 리스트 scroll-view -->
-  <block wx:if="{{listSelected}}">
-    <scroll-view wx:if="{{cafeList.length}}" scroll-y="{{modalName==null}}" class="cafe-scroll-page page {{modalName!=null?'show':''}}">
-      <view class="cu-list menu-avatar">
-        <view wx:for="{{cafeList}}" wx:key="index" bindtap="bindCafeTap" data-item="{{item}}">
-          <view class="cafe-item">
-            <image class="cafe-image" src="{{item.image}}"></image>
-              <text wx:if="{{!item.image}}" class="cuIcon-picfill lg text-gray"></text>
-            <view class="cafe-content">
-              <view>
-                <text class="text-black1 text-size16 cafe-name-text">{{item.name}}</text>
-              </view>
-              <view class="text-gray text-sm flex">
-                <text class="text-black3 text-size11 cafe-location-text"> {{item.location}}</text>
-              </view>
-              <view class="cafe-distance">
-                <text class="cafe-distance-text text-size12">{{item.distance}}</text>
+  <view class="main-bottom-container">
+    <block wx:if="{{listSelected}}">
+      <scroll-view wx:if="{{cafeList.length}}" scroll-y="{{modalName==null}}" class="cafe-scroll-page {{modalName!=null?'show':''}}">
+        <view class="cu-list menu-avatar">
+          <view wx:for="{{cafeList}}" wx:key="index" bindtap="bindCafeTap" data-item="{{item}}">
+            <view class="cafe-item">
+              <image class="cafe-image" src="{{item.image}}"></image>
+                <text wx:if="{{!item.image}}" class="cuIcon-picfill lg text-gray"></text>
+              <view class="cafe-content">
+                <view>
+                  <text class="text-black1 text-size16 cafe-name-text">{{item.name}}</text>
+                </view>
+                <view class="text-gray text-sm flex">
+                  <text class="text-black3 text-size11 cafe-location-text"> {{item.location}}</text>
+                </view>
+                <view class="cafe-distance">
+                  <text class="cafe-distance-text text-size12">{{item.distance}}</text>
+                </view>
               </view>
             </view>
+            <view class="border"></view>
           </view>
-          <view class="border"></view>
         </view>
+      </scroll-view>
+      <view wx:else>
+        <text class="text-center text-black1">데이터가 없습니다.</text>
       </view>
-    </scroll-view>
-    <view wx:else>
-      <text class="text-center text-black1">데이터가 없습니다.</text>
-    </view>
-  </block>
+    </block>
+  </view>
 
 <!-- 카페 map -->
   <view class="map-container" wx:if="{{!listSelected}}">
